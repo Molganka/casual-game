@@ -1,0 +1,176 @@
+using UnityEngine;
+using UnityEngine.UIElements;
+
+public class PlayerController : MonoBehaviour
+{
+    [SerializeField] private float _speedMove = 5f;
+    [SerializeField] private float _finish1Speed;
+    [SerializeField] private float _finish2Speed = 7f;
+    [SerializeField, Range(0, 1)] private float _smoothTurn = 0.5f;
+    private SliderInt slider;
+    
+    private PlayerAppearance _playerAppearance => GetComponentInChildren<PlayerAppearance>();
+
+    private float _rangeX = 8.5f;
+    private float _currentRangeX;
+    private float _targetPositionX;
+
+    private bool _canMove = false;
+    private bool _canInput = true;
+
+    private float _currentXOffset = 0f; // Текущее смещение куба
+    private Vector2 _lastTouchPosition;
+
+    [Header("Physics")]
+    [SerializeField] private float _velocity;
+    [SerializeField] private float _gravityScale;
+
+    [SerializeField] private Transform _groundChecker;
+    [SerializeField] private LayerMask _groundLayer;
+
+    [SerializeField] private bool _isOnGround = false;
+
+    public bool CanMove { get { return _canMove; } }
+    public bool CanInput { get { return _canInput; } }
+
+    private enum ControlType : byte
+    {
+        PC,
+        Mobile
+    }
+
+    private void OnEnable()
+    {
+        UiController.OnGameStarted += StartMove;
+        PlayerAppearance.OnFinishPassed += StopMove;
+
+        CollisionHandler.OnFinish1Entered += Finish1Settings;
+        CollisionHandler.OnFinish2Entered += Finish2Settings;
+
+        _targetPositionX = transform.position.x;
+    }
+
+    private void OnDisable()
+    {
+        UiController.OnGameStarted -= StartMove;
+        PlayerAppearance.OnFinishPassed += StopMove;
+
+        CollisionHandler.OnFinish1Entered -= Finish1Settings;
+        CollisionHandler.OnFinish2Entered -= Finish2Settings;
+    }
+
+    private void Update()
+    {
+        if (!_canInput || !_canMove)
+        {
+            return;
+        }
+
+        _targetPositionX = GetInput();
+
+        SetRangeByScale();
+        // Ограничиваем движение по диапазону
+        _targetPositionX = Mathf.Clamp(_targetPositionX, -_currentRangeX, _currentRangeX);
+    }
+
+    private void LateUpdate()
+    {
+        if (!_canMove)
+        {
+            return;
+        }
+
+        ForwardMove();
+        Gravity();
+        GravityMove();
+
+        Vector3 currentPosition = transform.position;
+
+        currentPosition.x = Mathf.Lerp(currentPosition.x, _targetPositionX, _smoothTurn); // Плавность движения для Mobile         
+
+        transform.position = currentPosition;
+    }
+
+    private float GetInput()
+    {
+        if (!Input.GetMouseButton(0) && Input.touchCount == 0) return _currentXOffset;
+
+        Vector2 inputPosition = Input.touchCount > 0 ? (Vector2)Input.GetTouch(0).position : (Vector2)Input.mousePosition;
+
+        if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
+            _lastTouchPosition = inputPosition; // Запоминаем точку начала свайпа
+
+        if (Input.GetMouseButton(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved))
+        {
+            float halfScreen = Screen.width / 2;
+            float deltaX = (inputPosition.x - _lastTouchPosition.x) / halfScreen; // Разница свайпа
+            _currentXOffset += deltaX * _rangeX * GameData.Sensitivity; // Двигаем объект
+            _lastTouchPosition = inputPosition; // Обновляем точку касания
+        }
+
+        return _currentXOffset;
+    }
+
+    private void SetRangeByScale()
+    {
+        _currentRangeX = _rangeX - transform.localScale.x;
+    }
+
+    private void ForwardMove()
+    {
+        transform.Translate(Vector3.forward * _speedMove * Time.deltaTime);
+    }
+
+    private void GravityMove()
+    {
+        transform.Translate(new Vector3(0, _velocity, 0) * Time.deltaTime);
+    }
+
+    private void Gravity()
+    {
+        _velocity += Physics.gravity.y * _gravityScale * Time.deltaTime;
+
+        _isOnGround = Physics.OverlapBox(_groundChecker.position, _groundChecker.localScale / 2, Quaternion.identity, _groundLayer).Length > 0 && _velocity < 0;
+
+        if (_isOnGround)
+        {
+            _velocity = 0f;
+        }
+    }
+
+    public void Jump(float jumpForce)
+    {
+        _playerAppearance.PlaySound(PlayerAppearance.SoundsEnum.Jump);
+        Debug.Log("Jump");
+        if (_isOnGround)
+            Debug.Log("Jump2");
+        _velocity = jumpForce;
+    }
+
+    private void StartMove()
+    {
+        _canMove = true;
+    }
+
+    public void StopMove()
+    {
+        _canMove = false;
+    }
+
+    private void Finish1Settings()
+    {
+        _rangeX = 9.5f;
+        _speedMove = _finish1Speed;
+    }
+
+    private void Finish2Settings()
+    {
+        _rangeX = 9.5f;
+
+        _canInput = false;
+        _targetPositionX = 0f;
+        _speedMove = _finish2Speed;
+
+        Debug.Log("Finish settings end");
+    }
+}

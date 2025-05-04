@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8978704328740270333
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 158.565
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691434946730130213, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808539658707953955, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: _type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808539658707953955, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: _itemMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 6bf1959188b1c004ea843a9c623e520d, type: 2}
+    - target: {fileID: 3481761509941179115, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: a5081af40fe0b7943a1ff31e4aa8b02b, type: 2}
+    - target: {fileID: 7131214340714616152, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_Name
+      value: TrailRedPurple
+      objectReference: {fileID: 0}
+    - target: {fileID: 7800629541285330693, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.32156864
+      objectReference: {fileID: 0}
+    - target: {fileID: 7800629541285330693, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.30980393
+      objectReference: {fileID: 0}
+    - target: {fileID: 7800629541285330693, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.23529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 7800629541285330693, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8303869761275895288, guid: 73e101b6f62d99b498cffc435792905c,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 6bf1959188b1c004ea843a9c623e520d, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 73e101b6f62d99b498cffc435792905c, type: 3}
