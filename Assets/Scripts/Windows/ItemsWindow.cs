@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class ItemsWindow : MonoBehaviour
 {
+    public static ItemsWindow Instance;
+
     [SerializeField] private GameObject[] _itemTypes;
     [SerializeField] private GameObject[] _buttons;
     [SerializeField] private Type[] _inaccessibleItemTypes;  
@@ -19,6 +21,11 @@ public class ItemsWindow : MonoBehaviour
     private GameObject _currentType;
     private GameObject _currentButton;
     private int _currentIndexType;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {

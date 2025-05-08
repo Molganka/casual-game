@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 
 public class UiController : MonoBehaviour
 {
+    public static UiController Instance;
+
     [SerializeField] private GameObject _startWindow;
     [SerializeField] private GameObject _itemsWindow;
     [SerializeField] private GameObject _detectTouchObject;
@@ -14,8 +16,9 @@ public class UiController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _levelText;
 
     public static UnityAction OnGameStarted;
-  
-    public int Money;
+
+    [SerializeField] private int _money;
+    public int Money { get { return _money; } set { _money = value; } }
 
     private enum DeviceType : byte
     {
@@ -25,20 +28,31 @@ public class UiController : MonoBehaviour
 
     private void Awake()
     {
-        Money = 0;
+        Instance = this;
+        _money = 0;
+    }
+
+    private void Start()
+    {
+        ChangeAllMoneyDisplay();
     }
 
     private void Update()
     {
-        foreach(TextMeshProUGUI moneyText in _moneyTextes)
-        {
-            moneyText?.SetText($"{Money}");
-        }
+        ChangeAllMoneyDisplay();
     }
 
     public static void AnyPlaceTouched()
     {
         OnGameStarted?.Invoke();
+    }
+
+    private void ChangeAllMoneyDisplay()
+    {
+        foreach (TextMeshProUGUI moneyText in _moneyTextes)
+        {
+            moneyText?.SetText($"{_money}");
+        }
     }
 
     public void ChangeLevel(int level)
@@ -48,7 +62,11 @@ public class UiController : MonoBehaviour
 
     public void AddMoney(int value = 1)
     {
-        Money += value;
+        _money += value;
     }
 
+    public void RemoveMoney(int value = 1)
+    {
+        _money -= value;
+    }
 }
