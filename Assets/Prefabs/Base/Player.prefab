@@ -231,7 +231,7 @@ Transform:
   m_GameObject: {fileID: 2698277642735245071}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.95}
+  m_LocalPosition: {x: 0, y: -0.3, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -258,7 +258,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a5081af40fe0b7943a1ff31e4aa8b02b, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -348,7 +348,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.41
   m_MaskInteraction: 0
   m_Autodestruct: 0
-  m_Emitting: 1
+  m_Emitting: 0
   m_ApplyActiveColorSpace: 1
 --- !u!1 &3823385253666512572
 GameObject:
@@ -784,7 +784,7 @@ MonoBehaviour:
   _decreaseScale: 0.01
   _maxScoreToIncrease: 50
   _totalDecreaseTime: 0.2
-  _startScore: 0
+  _startScore: 3
   _startColor: {fileID: 2100000, guid: da02ae4179be6854d81cf4731ee50a58, type: 2}
   _basicColor: {fileID: 2100000, guid: da02ae4179be6854d81cf4731ee50a58, type: 2}
   OnDecrease: 0
