@@ -2,20 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coin : MonoBehaviour
+public class Gem : MonoBehaviour
 {
     private Animation _animation => GetComponent<Animation>();
-    private BoxCollider _boxCollider => GetComponent<BoxCollider>();
+    private BoxCollider _boxCollider => GetComponentInChildren<BoxCollider>();
     private AudioSource _audioSource => GetComponent<AudioSource>();
 
-    //Call in animation event
-    public void DestroyCoin() => Destroy(gameObject);
+    public void DestroyGem() => Destroy(gameObject);
 
-    public void GetCoin()
+    public void GetGem()
     {
         _boxCollider.enabled = false;
-        _animation.Play("CoinCollect");
+        _animation.Play("GemCollect");
         _audioSource.Play();
     }
 }
-

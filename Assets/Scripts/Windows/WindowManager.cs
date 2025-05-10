@@ -17,7 +17,7 @@ public class WindowManager : MonoBehaviour
         Start,
         Settings,
         Items,
-        Shop,
+        Upgrade,
         Game,
         LevelComplete
     }
@@ -57,9 +57,9 @@ public class WindowManager : MonoBehaviour
         ItemsWindowOpened?.Invoke();
     }
 
-    public void OpenShopWindow()
+    public void OpenUpgradeWindow()
     {
-        ChangeWindow(WindowsEnum.Shop);
+        ChangeWindow(WindowsEnum.Upgrade);
     }
 
     public void OpenGameWindow()

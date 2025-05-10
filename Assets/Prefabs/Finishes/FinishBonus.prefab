@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 7433139297602327029}
   - component: {fileID: 6041333634262515688}
   m_Layer: 0
-  m_Name: Finish1
+  m_Name: FinishBonus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,12 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955642dbc8da7e24dabde97ee35a17fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinPrefab: {fileID: 7820142999926034838, guid: 6100ad661055e1d45af8cadacfdecf5b,
+  _gemPrefab: {fileID: 2490419295466721573, guid: e87f7aaaddaab3f478dc930e61a76ce2,
     type: 3}
   _spawnXRange: 7
   _spawnYPosition: 1.06
   _spawnZRange: 148
-  _repeatZ: 2.3
+  _repeatZ: 1.6
 --- !u!1 &4280875311941598188
 GameObject:
   m_ObjectHideFlags: 0

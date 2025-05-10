@@ -17,6 +17,7 @@ TagManager:
   - Finish1
   - Finish2
   - Spike
+  - Gem
   layers:
   - Default
   - TransparentFX

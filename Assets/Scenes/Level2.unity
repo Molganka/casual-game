@@ -4222,7 +4222,7 @@ PrefabInstance:
     - target: {fileID: 707370173663865622, guid: 9033a43fadd15d9449393c0f6ef55c21,
         type: 3}
       propertyPath: m_Name
-      value: Finish1
+      value: FinishBonus
       objectReference: {fileID: 0}
     - target: {fileID: 7433139297602327029, guid: 9033a43fadd15d9449393c0f6ef55c21,
         type: 3}

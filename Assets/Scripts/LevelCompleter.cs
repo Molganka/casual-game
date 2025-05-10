@@ -19,9 +19,9 @@ public class LevelCompleter : MonoBehaviour
     [SerializeField] private float _timeToCountTotalMoney;
     [SerializeField] private float _duration = 2f;
 
-    private int _coins = 0;
+    private int _gems = 0;
 
-    private int _totalCions = 0;
+    private int _totalCoins = 0;
     private int _doubleCoins = 0;
 
     private void Start()
@@ -36,22 +36,21 @@ public class LevelCompleter : MonoBehaviour
 
     private void CountTotalMoney()
     {
-        if(CollisionHandler.FinishType == 1)
+        if(_gems > 0)
         {
-            _totalCions = _coins;
-            Debug.Log("Total type 1: " + _totalCions);
+            _totalCoins = _gems*5;
         }
-        else if(CollisionHandler.FinishType == 2)
+        else
         {
-            _totalCions = Convert.ToInt32(PlayerAppearance.FinalScore * CollisionHandler.Multiplier);
+            _totalCoins = Convert.ToInt32(25 * CollisionHandler.Multiplier);
         }
 
-        _doubleCoins = _totalCions * 2;
+        _doubleCoins = _totalCoins * 2;
         Debug.Log("Double Money: " + _doubleCoins);
-        _basicMoneyText.SetText(_totalCions.ToString());
+        _basicMoneyText.SetText(_totalCoins.ToString());
         _bonusMoneyText.SetText(_doubleCoins.ToString());
 
-        StartCounting(_totalCions);
+        StartCounting(_totalCoins);
     }
 
     private void StartCounting(int targetNumber)
@@ -80,7 +79,7 @@ public class LevelCompleter : MonoBehaviour
     {
         Debug.Log("COLLECT BASIC");
         _totalMoneyObject.SetActive(false);
-        _coinCollectEffect.StartShowCoins(_totalCions);
+        _coinCollectEffect.StartShowCoins(_totalCoins);
         DisableButtons();
     }
 
@@ -104,10 +103,8 @@ public class LevelCompleter : MonoBehaviour
         _button2.enabled = true;
     }
 
-    public void AddCoins(int value = 5)
+    public void AddGems()
     {
-        
-        _coins += value;
-        Debug.Log("AddCoins coins: " + _coins + " + " + value);
+        _gems++;
     }
 }

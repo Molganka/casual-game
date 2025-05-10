@@ -16,22 +16,14 @@ public class CollisionHandler : MonoBehaviour
     private float _rayLength = 3f;
     private string _targetTag = "Multiplier";
     private FinishBlockData _lastFinishBlockData;
-    private UiController _uiController;
     private LevelCompleter _levelCompleter;
 
-    public static byte FinishType { get; private set; }
     public static float Multiplier { get; private set; }
-
-    private void Awake()
-    {
-        FinishType = 0;
-    }
 
     private void Start()
     {
         _playerAppearance = GetComponentInChildren<PlayerAppearance>();
         _playerController = GetComponent<PlayerController>();
-        _uiController = FindFirstObjectByType<UiController>();
         _levelCompleter = FindFirstObjectByType<LevelCompleter>();
 
         PlayerAppearance.OnFinishPassed += StopCheckDown;
@@ -92,18 +84,11 @@ public class CollisionHandler : MonoBehaviour
         }
         else if (other.TryGetComponent<Coin>(out Coin coin))
         {
-            coin.GetCoin();
-            //если сейчас не находится на финише
-            if (FinishType == 0)
-            {
-                Debug.Log("FinishType 0 call");
-                _uiController.AddMoney();          
-            }
-            else if(FinishType == 1)
-            {
-                Debug.Log("FinishType 1 call");
-                _levelCompleter.AddCoins();
-            }       
+            coin.GetCoin();     
+        }
+        else if(other.CompareTag("Gem"))
+        {
+            _levelCompleter.AddGems();
         }
         else if (other.CompareTag("Jump"))
         {
@@ -112,12 +97,10 @@ public class CollisionHandler : MonoBehaviour
         }
         else if (other.CompareTag("Finish1"))
         {
-            FinishType = 1;
             OnFinish1Entered?.Invoke();   
         }
         else if (other.CompareTag("Finish2"))
         { 
-            FinishType = 2;
             OnFinish2Entered?.Invoke();
             _onCheckDown = true;
         }

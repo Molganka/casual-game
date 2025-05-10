@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class FinishCoinSpawner : MonoBehaviour
+public class FinishGemsSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _coinPrefab;
+    [SerializeField] private GameObject _gemPrefab;
 
     [SerializeField] private int _spawnXRange;
     [SerializeField] private float _spawnYPosition;
@@ -18,7 +18,7 @@ public class FinishCoinSpawner : MonoBehaviour
     {
         for(float z = -_spawnZRange; z < _spawnZRange; z += _repeatZ)
         {
-            GameObject coin = Instantiate(_coinPrefab, transform.TransformPoint(new Vector3(Random.Range(-_spawnXRange, _spawnXRange), _spawnYPosition, z)), transform.rotation);
+            GameObject coin = Instantiate(_gemPrefab, transform.TransformPoint(new Vector3(Random.Range(-_spawnXRange, _spawnXRange), _spawnYPosition, z)), transform.rotation);
             coin.transform.parent = transform;
         }
     }
