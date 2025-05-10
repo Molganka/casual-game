@@ -88,6 +88,7 @@ public class CollisionHandler : MonoBehaviour
         }
         else if(other.CompareTag("Gem"))
         {
+            other.gameObject.GetComponentInParent<Gem>().GetGem();
             _levelCompleter.AddGems();
         }
         else if (other.CompareTag("Jump"))

@@ -11,7 +11,6 @@ public class UiController : MonoBehaviour
 
     [SerializeField] private GameObject _startWindow;
     [SerializeField] private GameObject _itemsWindow;
-    [SerializeField] private GameObject _detectTouchObject;
     [SerializeField] private TextMeshProUGUI[] _moneyTextes;
     [SerializeField] private TextMeshProUGUI _levelText;
 
