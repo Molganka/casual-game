@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class GameData: MonoBehaviour
 {
+    [Header("Settings")]
     public static float Sensitivity;
     public static bool OnGameSound;
     public static bool OnUISound;
+
+    [Header("Upgrades")]
+    public static int Multiplier;
+    public static float GemSpawnRepeat;
+    public static int GemCost;
 }

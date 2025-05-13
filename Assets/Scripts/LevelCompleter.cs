@@ -38,11 +38,11 @@ public class LevelCompleter : MonoBehaviour
     {
         if(_gems > 0)
         {
-            _totalCoins = _gems*5;
+            _totalCoins = _gems * GameData.GemCost;
         }
         else
         {
-            _totalCoins = Convert.ToInt32(25 * CollisionHandler.Multiplier);
+            _totalCoins = Convert.ToInt32(GameData.Multiplier * CollisionHandler.Multiplier);
         }
 
         _doubleCoins = _totalCoins * 2;
