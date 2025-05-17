@@ -19,8 +19,6 @@ public class LevelCompleter : MonoBehaviour
     [SerializeField] private float _timeToCountTotalMoney;
     [SerializeField] private float _duration = 2f;
 
-    private int _gems = 0;
-
     private int _totalCoins = 0;
     private int _doubleCoins = 0;
 
@@ -36,9 +34,9 @@ public class LevelCompleter : MonoBehaviour
 
     private void CountTotalMoney()
     {
-        if(_gems > 0)
+        if(FinishWindow.Instance.Gems > 0)
         {
-            _totalCoins = _gems * GameData.GemCost;
+            _totalCoins = FinishWindow.Instance.Gems * GameData.GemCost;
         }
         else
         {
@@ -101,10 +99,5 @@ public class LevelCompleter : MonoBehaviour
     {
         _button1.enabled = true;
         _button2.enabled = true;
-    }
-
-    public void AddGems()
-    {
-        _gems++;
     }
 }

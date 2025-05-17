@@ -32,15 +32,14 @@ public class PlayerAppearance : CubeBasic
     private bool _isThisStart = true;
     private bool _onFinishGo = false;
 
+    public static UnityAction OnRoadPassed;
     public static UnityAction OnFinishPassed;
-    public static UnityAction OnLevelFinished;
+    public static UnityAction OnFinishPassedAfterCoroutine;
 
     private Animation _animation;
 
     private PlayerController _playerController;
     private LevelManager _sceneLoader;
-
-    public static int FinalScore { get; private set; }
 
     public enum SoundsEnum
     {
@@ -194,13 +193,13 @@ public class PlayerAppearance : CubeBasic
     private IEnumerator OnLevelFinishCoroutine()
     {
         yield return new WaitForSeconds(_finishLevelTime);
-        OnLevelFinished?.Invoke();
+        OnFinishPassedAfterCoroutine?.Invoke();
     }
 
     private void StartFinishDecreaseCoroutine()
     {
-        FinalScore = _score;
         _onFinishGo = true;
+        OnRoadPassed?.Invoke();
         StartCoroutine(FinishDecreaseCoroutine());
     }
 

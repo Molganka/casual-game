@@ -11,6 +11,6 @@ public class GameData: MonoBehaviour
 
     [Header("Upgrades")]
     public static int Multiplier;
-    public static float GemSpawnRepeat;
+    public static float GemSpawnRepeat = 1;
     public static int GemCost;
 }

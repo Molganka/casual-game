@@ -4,8 +4,8 @@ using UnityEngine.UIElements;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _speedMove = 5f;
-    [SerializeField] private float _finish1Speed;
-    [SerializeField] private float _finish2Speed = 7f;
+    [SerializeField] private float _bonusFinishSpeed;
+    [SerializeField] private float _basicFinishSpeed = 7f;
     [SerializeField, Range(0, 1)] private float _smoothTurn = 0.5f;
     private SliderInt slider;
     
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         UiController.OnGameStarted -= StartMove;
-        PlayerAppearance.OnFinishPassed += StopMove;
+        PlayerAppearance.OnFinishPassed -= StopMove;
 
         CollisionHandler.OnFinish1Entered -= Finish1Settings;
         CollisionHandler.OnFinish2Entered -= Finish2Settings;
@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
     private void Finish1Settings()
     {
         _rangeX = 9.5f;
-        _speedMove = _finish1Speed;
+        _speedMove = _bonusFinishSpeed;
     }
 
     private void Finish2Settings()
@@ -169,7 +169,7 @@ public class PlayerController : MonoBehaviour
 
         _canInput = false;
         _targetPositionX = 0f;
-        _speedMove = _finish2Speed;
+        _speedMove = _basicFinishSpeed;
 
         Debug.Log("Finish settings end");
     }

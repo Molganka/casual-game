@@ -34,13 +34,13 @@ public class UpgradeButton : MonoBehaviour
     private void Awake()
     {
         _currentUpgradeIndex = 0;
+        _updateIcon.SetActive(true);
+        ChangeUpgrade(0);       
     }
 
     private void Start()
     {
-        _button.onClick.AddListener(ButtonClicked);
-        ChangeUpgrade(0);
-        _updateIcon.SetActive(true);
+        _button.onClick.AddListener(ButtonClicked);        
     }
 
     private void Update()

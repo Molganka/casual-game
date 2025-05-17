@@ -19,7 +19,13 @@ public class WindowManager : MonoBehaviour
         Items,
         Upgrade,
         Game,
+        Finish,
         LevelComplete
+    }
+
+    private void Awake()
+    {
+        OpenUpgradeWindow();
     }
 
     private void Start()
@@ -28,7 +34,8 @@ public class WindowManager : MonoBehaviour
 
         LevelManager.OnLevelChanged += OpenStartWindow;
         UiController.OnGameStarted += OpenGameWindow;
-        PlayerAppearance.OnLevelFinished += OpenLevelCompleteWindow;
+        PlayerAppearance.OnRoadPassed += OpenFinishWindow;
+        PlayerAppearance.OnFinishPassedAfterCoroutine += OpenLevelCompleteWindow;     
 
         HideAllWindows();
         OpenStartWindow();
@@ -65,6 +72,11 @@ public class WindowManager : MonoBehaviour
     public void OpenGameWindow()
     {
         ChangeWindow(WindowsEnum.Game);
+    }
+
+    public void OpenFinishWindow()
+    {
+        ChangeWindow(WindowsEnum.Finish);
     }
 
     public void OpenLevelCompleteWindow()

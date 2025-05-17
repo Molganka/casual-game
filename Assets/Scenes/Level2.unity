@@ -4229,6 +4229,11 @@ PrefabInstance:
       propertyPath: _repeatZ
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6041333634262515688, guid: 9033a43fadd15d9449393c0f6ef55c21,
+        type: 3}
+      propertyPath: _zDifference
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7433139297602327029, guid: 9033a43fadd15d9449393c0f6ef55c21,
         type: 3}
       propertyPath: m_LocalPosition.x

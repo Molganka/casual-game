@@ -16,7 +16,6 @@ public class CollisionHandler : MonoBehaviour
     private float _rayLength = 3f;
     private string _targetTag = "Multiplier";
     private FinishBlockData _lastFinishBlockData;
-    private LevelCompleter _levelCompleter;
 
     public static float Multiplier { get; private set; }
 
@@ -24,7 +23,6 @@ public class CollisionHandler : MonoBehaviour
     {
         _playerAppearance = GetComponentInChildren<PlayerAppearance>();
         _playerController = GetComponent<PlayerController>();
-        _levelCompleter = FindFirstObjectByType<LevelCompleter>();
 
         PlayerAppearance.OnFinishPassed += StopCheckDown;
     }
@@ -89,7 +87,7 @@ public class CollisionHandler : MonoBehaviour
         else if(other.CompareTag("Gem"))
         {
             other.gameObject.GetComponentInParent<Gem>().GetGem();
-            _levelCompleter.AddGems();
+            FinishWindow.Instance.AddGems();
         }
         else if (other.CompareTag("Jump"))
         {
