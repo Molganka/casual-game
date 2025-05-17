@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class CollisionHandler : MonoBehaviour
 {
@@ -9,15 +10,22 @@ public class CollisionHandler : MonoBehaviour
     public static UnityAction<GameObject, BlockData> OnBlockTrigged;
     public static UnityAction<PortalData> OnPortalEntered;
     public static UnityAction<EnemyCube> OnCubeTrgged;
-    public static UnityAction OnFinish1Entered;
-    public static UnityAction OnFinish2Entered;
+    public static UnityAction OnBonusFinishEntered;
+    public static UnityAction OnBasicFinishEntered;
 
     private bool _onCheckDown = false;
     private float _rayLength = 3f;
-    private string _targetTag = "Multiplier";
+    private string _targetTag = "BlockCost";
     private FinishBlockData _lastFinishBlockData;
 
+    public static FinishTypes FinishType { get; private set; }
     public static float Multiplier { get; private set; }
+
+    public enum FinishTypes
+    {
+        Basic,
+        Bonus
+    }
 
     private void Start()
     {
@@ -42,7 +50,7 @@ public class CollisionHandler : MonoBehaviour
 
                     if (currentFinishBlockData != _lastFinishBlockData)
                     {
-                        Multiplier = currentFinishBlockData.Multiplier;
+                        BasicFinishWindow.AddMoney();
                         currentFinishBlockData.Activate();
                     }
 
@@ -87,21 +95,24 @@ public class CollisionHandler : MonoBehaviour
         else if(other.CompareTag("Gem"))
         {
             other.gameObject.GetComponentInParent<Gem>().GetGem();
-            FinishWindow.Instance.AddGems();
+            BonusFinishWindow.Instance.AddGems();
         }
         else if (other.CompareTag("Jump"))
         {
             _playerController.Jump(other.gameObject.GetComponent<SpringPlatfomData>().SpringForce);
             other.gameObject.GetComponentInChildren<Animation>().Play();
         }
-        else if (other.CompareTag("Finish1"))
+        else if (other.CompareTag("FinishBasic"))
         {
-            OnFinish1Entered?.Invoke();   
-        }
-        else if (other.CompareTag("Finish2"))
-        { 
-            OnFinish2Entered?.Invoke();
             _onCheckDown = true;
+            FinishType = FinishTypes.Basic;
+            OnBasicFinishEntered?.Invoke();
+              
+        }
+        else if (other.CompareTag("FinishBonus"))
+        {          
+            FinishType = FinishTypes.Bonus;
+            OnBonusFinishEntered?.Invoke();          
         }
     }
 

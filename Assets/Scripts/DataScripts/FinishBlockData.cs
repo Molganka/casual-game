@@ -7,15 +7,12 @@ public class FinishBlockData : MonoBehaviour
 {
     [SerializeField] private Material _newMaterial;
     private MeshRenderer _meshRenderer;
+    private TextMeshPro _multiplierText;
 
-    public float Multiplier;
-    private TextMeshPro _text;
-
-    private void Start()
+    private void Awake()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
-        _text = GetComponentInChildren<TextMeshPro>();
-        _text.SetText($"×{Multiplier}");
+        _multiplierText = GetComponentInChildren<TextMeshPro>();
     }
 
     public void Activate()
@@ -23,5 +20,10 @@ public class FinishBlockData : MonoBehaviour
         GetComponent<Animation>().Play();
         SoundUI.Instance.PlaySound(SoundUI.AudioClipsEnum.Block);
         _meshRenderer.material = _newMaterial;
+    }
+
+    public void SetMultiplierText(float multiplier)
+    {
+        _multiplierText.SetText($"x{multiplier}");
     }
 }

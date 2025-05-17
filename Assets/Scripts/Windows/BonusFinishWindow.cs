@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class FinishWindow : MonoBehaviour
+public class BonusFinishWindow : MonoBehaviour
 {
-    public static FinishWindow Instance;
+    public static BonusFinishWindow Instance;
 
     [SerializeField] private TextMeshProUGUI _gemsText;
 
-    private Animation _animation => GetComponentInChildren<Animation>();
+    private Animation _animation => _gemsText.GetComponentInChildren<Animation>();
     private int _gems = 0;
     public int Gems { get { return _gems; } }
 

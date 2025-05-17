@@ -9,14 +9,14 @@ public class CamerasManager : MonoBehaviour
 
     private void OnEnable()
     { 
-        CollisionHandler.OnFinish1Entered += ChangeToBackCamera;
-        CollisionHandler.OnFinish2Entered += ChangeToSideCamera;
+        CollisionHandler.OnBonusFinishEntered += ChangeToBackCamera;
+        CollisionHandler.OnBasicFinishEntered += ChangeToSideCamera;
     }
 
     private void OnDisable()
     {
-        CollisionHandler.OnFinish1Entered -= ChangeToBackCamera;
-        CollisionHandler.OnFinish2Entered -= ChangeToSideCamera;
+        CollisionHandler.OnBonusFinishEntered -= ChangeToBackCamera;
+        CollisionHandler.OnBasicFinishEntered -= ChangeToSideCamera;
     }
 
     private void ChangeToBackCamera()

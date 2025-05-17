@@ -34,13 +34,13 @@ public class LevelCompleter : MonoBehaviour
 
     private void CountTotalMoney()
     {
-        if(FinishWindow.Instance.Gems > 0)
+        if(CollisionHandler.FinishType == CollisionHandler.FinishTypes.Basic)
         {
-            _totalCoins = FinishWindow.Instance.Gems * GameData.GemCost;
+            _totalCoins = Convert.ToInt32(BasicFinishWindow.Money);
         }
-        else
+        else if(CollisionHandler.FinishType == CollisionHandler.FinishTypes.Bonus)
         {
-            _totalCoins = Convert.ToInt32(GameData.Multiplier * CollisionHandler.Multiplier);
+            _totalCoins = BonusFinishWindow.Instance.Gems * GameData.GemCost;
         }
 
         _doubleCoins = _totalCoins * 2;

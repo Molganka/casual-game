@@ -19,7 +19,8 @@ public class WindowManager : MonoBehaviour
         Items,
         Upgrade,
         Game,
-        Finish,
+        BasicFinish,
+        BonusFinish,
         LevelComplete
     }
 
@@ -45,6 +46,14 @@ public class WindowManager : MonoBehaviour
     {
         foreach(var window in _windows)
             window.gameObject.SetActive(false);
+    }
+
+    private void OpenFinishWindow()
+    {
+        if (CollisionHandler.FinishType == CollisionHandler.FinishTypes.Basic)
+            OpenBasicFinishWidnow();
+        else if (CollisionHandler.FinishType == CollisionHandler.FinishTypes.Bonus)
+            OpenBonusFinishWindow();
     }
 
     public void OpenStartWindow()
@@ -74,9 +83,14 @@ public class WindowManager : MonoBehaviour
         ChangeWindow(WindowsEnum.Game);
     }
 
-    public void OpenFinishWindow()
+    public void OpenBasicFinishWidnow()
     {
-        ChangeWindow(WindowsEnum.Finish);
+        ChangeWindow(WindowsEnum.BasicFinish);
+    }
+
+    public void OpenBonusFinishWindow()
+    {
+        ChangeWindow(WindowsEnum.BonusFinish);
     }
 
     public void OpenLevelCompleteWindow()
@@ -88,8 +102,12 @@ public class WindowManager : MonoBehaviour
 
     private void ChangeWindow(WindowsEnum window)
     {
+        Debug.Log("KKK: " + window);
+        Debug.Log("KKKK: " + (int)window);    
+        Debug.Log("KKKKk: " + _windows[(int)window]);
         _windows[(int)_currentWindow]?.SetActive(false);
         _windows[(int)window].SetActive(true);
+
         _currentWindow = window;
     }
 }

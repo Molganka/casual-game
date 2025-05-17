@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class UpgradeButton : MonoBehaviour
 {
     [SerializeField] private int[] _costs;
-    [SerializeField] private Upgrade _upgrades;
+    [SerializeField] private float[] _upgrades;
     [SerializeField] private UpgradeTypes _upgradeType;
 
     [SerializeField] private Material _grayMaterial;   
@@ -99,18 +99,11 @@ public class UpgradeButton : MonoBehaviour
             UiController.Instance.RemoveMoney(_costs[_currentUpgradeIndex]);
 
         if (_upgradeType == UpgradeTypes.Multiplier)
-            GameData.Multiplier = _upgrades.IntUpgrades[upgradeIndex];
+            GameData.BlockCost = _upgrades[upgradeIndex];
         else if (_upgradeType == UpgradeTypes.GemSpawnRepeat)
-            GameData.GemSpawnRepeat = _upgrades.FloatUpgrades[upgradeIndex];
+            GameData.GemSpawnRepeat = _upgrades[upgradeIndex];
 
         _currentUpgradeIndex = upgradeIndex;
         Debug.Log(_currentUpgradeIndex + " . " + upgradeIndex);
-    }
-
-    [Serializable]
-    public struct Upgrade
-    {
-        public int[] IntUpgrades;
-        public float[] FloatUpgrades;
     }
 }

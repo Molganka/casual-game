@@ -10,7 +10,7 @@ public class GameData: MonoBehaviour
     public static bool OnUISound;
 
     [Header("Upgrades")]
-    public static int Multiplier;
+    public static float BlockCost;
     public static float GemSpawnRepeat = 1;
     public static int GemCost;
 }

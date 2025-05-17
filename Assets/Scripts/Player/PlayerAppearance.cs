@@ -61,8 +61,8 @@ public class PlayerAppearance : CubeBasic
         CollisionHandler.OnBlockTrigged += BlockCollect;
         CollisionHandler.OnCubeTrgged += CubeAtack;
 
-        CollisionHandler.OnFinish1Entered += StartFinishDecreaseCoroutine;
-        CollisionHandler.OnFinish2Entered += StartFinishDecreaseCoroutine;
+        CollisionHandler.OnBonusFinishEntered += StartFinishDecreaseCoroutine;
+        CollisionHandler.OnBasicFinishEntered += StartFinishDecreaseCoroutine;
 
         WindowManager.ItemsWindowOpened += ChangeLayerToUICamera;
         WindowManager.StartWindowOpened += ChangeLayerToDefault;
@@ -74,8 +74,8 @@ public class PlayerAppearance : CubeBasic
         CollisionHandler.OnBlockTrigged -= BlockCollect;
         CollisionHandler.OnCubeTrgged -= CubeAtack;
 
-        CollisionHandler.OnFinish1Entered -= StartFinishDecreaseCoroutine;
-        CollisionHandler.OnFinish2Entered -= StartFinishDecreaseCoroutine;
+        CollisionHandler.OnBonusFinishEntered -= StartFinishDecreaseCoroutine;
+        CollisionHandler.OnBasicFinishEntered -= StartFinishDecreaseCoroutine;
 
         WindowManager.ItemsWindowOpened -= ChangeLayerToUICamera;
         WindowManager.StartWindowOpened -= ChangeLayerToDefault;

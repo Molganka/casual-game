@@ -198,6 +198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6427217}
+  - component: {fileID: 6427218}
   m_Layer: 5
   m_Name: TotalGems
   m_TagString: Untagged
@@ -227,6 +228,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!111 &6427218
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6427216}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 2f4435c99ce7a134bbb473d4e60b7d25, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 2f4435c99ce7a134bbb473d4e60b7d25, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &15806905
 GameObject:
   m_ObjectHideFlags: 0
@@ -2159,12 +2176,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9401e918cb05f04198dbd8293e9a437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _costs: c80000002c010000
+  _costs: 32000000
   _upgrades:
-    IntUpgrades: 
-    FloatUpgrades:
-    - 9
-    - 2.25
+  - 7
+  - 9
   _upgradeType: 1
   _grayMaterial: {fileID: 2100000, guid: 05fab18dca2fc7a4ebbd3b02c6c585f6, type: 2}
   _priceText: {fileID: 798682407}
@@ -3628,12 +3643,12 @@ GameObject:
   - component: {fileID: 753071515}
   - component: {fileID: 753071516}
   m_Layer: 5
-  m_Name: FinishWindow
+  m_Name: BonusFinishWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &753071515
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3814,6 +3829,7 @@ MonoBehaviour:
   - {fileID: 1560010718}
   - {fileID: 793346503}
   - {fileID: 6204445906240477356}
+  - {fileID: 1235688001}
   - {fileID: 753071514}
   - {fileID: 4510656669162128473}
 --- !u!114 &770628174
@@ -5284,10 +5300,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9401e918cb05f04198dbd8293e9a437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _costs: 96000000c8000000
+  _costs: 1e000000
   _upgrades:
-    IntUpgrades: 1900000032000000
-    FloatUpgrades: []
+  - 5.5
+  - 7
   _upgradeType: 0
   _grayMaterial: {fileID: 2100000, guid: 05fab18dca2fc7a4ebbd3b02c6c585f6, type: 2}
   _priceText: {fileID: 518038820}
@@ -6635,8 +6651,9 @@ RectTransform:
   - {fileID: 1560010720}
   - {fileID: 793346504}
   - {fileID: 8413028882632379035}
-  - {fileID: 3887219712706147946}
+  - {fileID: 1235688002}
   - {fileID: 753071515}
+  - {fileID: 3887219712706147946}
   m_Father: {fileID: 770628177}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -6860,6 +6877,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206899877}
   m_CullTransparentMesh: 0
+--- !u!1 &1235688001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1235688002}
+  m_Layer: 5
+  m_Name: BasicFinishWindow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1235688002
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235688001}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1163232799}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1236253019
 GameObject:
   m_ObjectHideFlags: 0

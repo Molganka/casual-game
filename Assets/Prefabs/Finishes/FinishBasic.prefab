@@ -293,7 +293,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 46d7881ff07f5b741a153b7395ffc610, type: 2}
-  Multiplier: 1.4
 --- !u!111 &7625897397102980530
 Animation:
   m_ObjectHideFlags: 0
@@ -431,7 +430,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 87a610d2b4d155446892f9086fe3cf38, type: 2}
-  Multiplier: 3.6
 --- !u!111 &4826230096676361576
 Animation:
   m_ObjectHideFlags: 0
@@ -741,7 +739,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 72f0a8f083027954cad2ffe28efcbcfd, type: 2}
-  Multiplier: 1.3
 --- !u!111 &4929428882782331307
 Animation:
   m_ObjectHideFlags: 0
@@ -879,7 +876,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 87a610d2b4d155446892f9086fe3cf38, type: 2}
-  Multiplier: 2.4
 --- !u!111 &4565931661375867143
 Animation:
   m_ObjectHideFlags: 0
@@ -1017,7 +1013,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 72f0a8f083027954cad2ffe28efcbcfd, type: 2}
-  Multiplier: 4.9
 --- !u!111 &8697286286616677982
 Animation:
   m_ObjectHideFlags: 0
@@ -1499,7 +1494,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 72f0a8f083027954cad2ffe28efcbcfd, type: 2}
-  Multiplier: 2.5
 --- !u!111 &6020102483736285718
 Animation:
   m_ObjectHideFlags: 0
@@ -1983,7 +1977,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 0f2a1aad241fd9c44bdfb936042bda9d, type: 2}
-  Multiplier: 1.1
 --- !u!111 &14555498980865964
 Animation:
   m_ObjectHideFlags: 0
@@ -2121,7 +2114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 91403d5c3f077774e860e450c7c9ae45, type: 2}
-  Multiplier: 2.2
 --- !u!111 &651430290911067300
 Animation:
   m_ObjectHideFlags: 0
@@ -2259,7 +2251,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 47ced58423793a442844f1ddc8a7eab2, type: 2}
-  Multiplier: 1.5
 --- !u!111 &8546425819535345135
 Animation:
   m_ObjectHideFlags: 0
@@ -2745,7 +2736,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 72f0a8f083027954cad2ffe28efcbcfd, type: 2}
-  Multiplier: 4.3
 --- !u!111 &3821414904598197785
 Animation:
   m_ObjectHideFlags: 0
@@ -3229,7 +3219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 46d7881ff07f5b741a153b7395ffc610, type: 2}
-  Multiplier: 2
 --- !u!111 &8476009413985589927
 Animation:
   m_ObjectHideFlags: 0
@@ -3798,7 +3787,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 47ced58423793a442844f1ddc8a7eab2, type: 2}
-  Multiplier: 4.5
 --- !u!111 &2783554560496590985
 Animation:
   m_ObjectHideFlags: 0
@@ -3936,7 +3924,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 46d7881ff07f5b741a153b7395ffc610, type: 2}
-  Multiplier: 5
 --- !u!111 &8996507199048648752
 Animation:
   m_ObjectHideFlags: 0
@@ -4074,7 +4061,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 72f0a8f083027954cad2ffe28efcbcfd, type: 2}
-  Multiplier: 3.7
 --- !u!111 &7946580083107009393
 Animation:
   m_ObjectHideFlags: 0
@@ -4732,7 +4718,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 47ced58423793a442844f1ddc8a7eab2, type: 2}
-  Multiplier: 3.9
 --- !u!111 &548553242290224646
 Animation:
   m_ObjectHideFlags: 0
@@ -5734,7 +5719,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 46d7881ff07f5b741a153b7395ffc610, type: 2}
-  Multiplier: 4.4
 --- !u!111 &8185398537481268224
 Animation:
   m_ObjectHideFlags: 0
@@ -5872,7 +5856,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 0f2a1aad241fd9c44bdfb936042bda9d, type: 2}
-  Multiplier: 4.1
 --- !u!111 &8133540966100795118
 Animation:
   m_ObjectHideFlags: 0
@@ -6528,7 +6511,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 0f2a1aad241fd9c44bdfb936042bda9d, type: 2}
-  Multiplier: 4.7
 --- !u!111 &4869368492711688698
 Animation:
   m_ObjectHideFlags: 0
@@ -6666,7 +6648,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 87a610d2b4d155446892f9086fe3cf38, type: 2}
-  Multiplier: 4.2
 --- !u!111 &8806527732479607498
 Animation:
   m_ObjectHideFlags: 0
@@ -6804,7 +6785,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 91403d5c3f077774e860e450c7c9ae45, type: 2}
-  Multiplier: 3.4
 --- !u!111 &8705241057886725358
 Animation:
   m_ObjectHideFlags: 0
@@ -7290,7 +7270,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 91403d5c3f077774e860e450c7c9ae45, type: 2}
-  Multiplier: 2.8
 --- !u!111 &4963640010077454562
 Animation:
   m_ObjectHideFlags: 0
@@ -7600,7 +7579,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 87a610d2b4d155446892f9086fe3cf38, type: 2}
-  Multiplier: 1.2
 --- !u!111 &1949994524192259634
 Animation:
   m_ObjectHideFlags: 0
@@ -8084,7 +8062,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 47ced58423793a442844f1ddc8a7eab2, type: 2}
-  Multiplier: 2.7
 --- !u!111 &4167544186687307133
 Animation:
   m_ObjectHideFlags: 0
@@ -8635,7 +8612,7 @@ GameObject:
   - component: {fileID: 2604176199176360514}
   m_Layer: 0
   m_Name: FinishCollider
-  m_TagString: Finish2
+  m_TagString: FinishBasic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8797,7 +8774,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 91403d5c3f077774e860e450c7c9ae45, type: 2}
-  Multiplier: 4
 --- !u!111 &7699336345725452850
 Animation:
   m_ObjectHideFlags: 0
@@ -9109,7 +9085,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 47ced58423793a442844f1ddc8a7eab2, type: 2}
-  Multiplier: 2.1
 --- !u!111 &1189015342578973474
 Animation:
   m_ObjectHideFlags: 0
@@ -9247,7 +9222,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 0f2a1aad241fd9c44bdfb936042bda9d, type: 2}
-  Multiplier: 1.7
 --- !u!111 &8147430129807294926
 Animation:
   m_ObjectHideFlags: 0
@@ -9557,7 +9531,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 72f0a8f083027954cad2ffe28efcbcfd, type: 2}
-  Multiplier: 3.1
 --- !u!111 &2826495352115255842
 Animation:
   m_ObjectHideFlags: 0
@@ -9695,7 +9668,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 0f2a1aad241fd9c44bdfb936042bda9d, type: 2}
-  Multiplier: 3.5
 --- !u!111 &1009805662485286975
 Animation:
   m_ObjectHideFlags: 0
@@ -10007,7 +9979,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 0f2a1aad241fd9c44bdfb936042bda9d, type: 2}
-  Multiplier: 2.9
 --- !u!111 &5370669242137297950
 Animation:
   m_ObjectHideFlags: 0
@@ -10145,7 +10116,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 46d7881ff07f5b741a153b7395ffc610, type: 2}
-  Multiplier: 3.2
 --- !u!111 &547588804905946069
 Animation:
   m_ObjectHideFlags: 0
@@ -10283,7 +10253,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 0f2a1aad241fd9c44bdfb936042bda9d, type: 2}
-  Multiplier: 2.3
 --- !u!111 &836828516299035975
 Animation:
   m_ObjectHideFlags: 0
@@ -10593,7 +10562,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 46d7881ff07f5b741a153b7395ffc610, type: 2}
-  Multiplier: 2.6
 --- !u!111 &3378834392707765963
 Animation:
   m_ObjectHideFlags: 0
@@ -10731,7 +10699,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 91403d5c3f077774e860e450c7c9ae45, type: 2}
-  Multiplier: 4.6
 --- !u!111 &5812117023811401000
 Animation:
   m_ObjectHideFlags: 0
@@ -10869,7 +10836,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 47ced58423793a442844f1ddc8a7eab2, type: 2}
-  Multiplier: 3.3
 --- !u!111 &7406852608871533570
 Animation:
   m_ObjectHideFlags: 0
@@ -11007,7 +10973,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 91403d5c3f077774e860e450c7c9ae45, type: 2}
-  Multiplier: 1.6
 --- !u!111 &1985879881240383118
 Animation:
   m_ObjectHideFlags: 0
@@ -11033,8 +10998,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3773524540022596564}
+  - component: {fileID: 757087856499853495}
   m_Layer: 0
-  m_Name: Finish2
+  m_Name: FinishBasic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11097,6 +11063,18 @@ Transform:
   - {fileID: 4293457983115258179}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &757087856499853495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7656370412035302549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18010242ee033454a8edcdbddf7cb7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7676149074090916022
 GameObject:
   m_ObjectHideFlags: 0
@@ -11218,7 +11196,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 46d7881ff07f5b741a153b7395ffc610, type: 2}
-  Multiplier: 3.8
 --- !u!111 &4650940780013691612
 Animation:
   m_ObjectHideFlags: 0
@@ -11356,7 +11333,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 87a610d2b4d155446892f9086fe3cf38, type: 2}
-  Multiplier: 4.8
 --- !u!111 &9067488903358763986
 Animation:
   m_ObjectHideFlags: 0
@@ -11666,7 +11642,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 72f0a8f083027954cad2ffe28efcbcfd, type: 2}
-  Multiplier: 1.9
 --- !u!111 &4400574511511485071
 Animation:
   m_ObjectHideFlags: 0
@@ -11976,7 +11951,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 87a610d2b4d155446892f9086fe3cf38, type: 2}
-  Multiplier: 3
 --- !u!111 &6491421946946764785
 Animation:
   m_ObjectHideFlags: 0
@@ -12286,7 +12260,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newMaterial: {fileID: 2100000, guid: 87a610d2b4d155446892f9086fe3cf38, type: 2}
-  Multiplier: 1.8
 --- !u!111 &6125347872172893337
 Animation:
   m_ObjectHideFlags: 0

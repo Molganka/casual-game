@@ -157,7 +157,7 @@ MonoBehaviour:
   _spawnXRange: 7
   _spawnYPosition: 1.06
   _spawnZRange: 148
-  _repeatZ: 1.6
+  _zDifference: 0
 --- !u!1 &4280875311941598188
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 3332479623428604656}
   m_Layer: 0
   m_Name: FinishCollider
-  m_TagString: Finish1
+  m_TagString: FinishBonus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
