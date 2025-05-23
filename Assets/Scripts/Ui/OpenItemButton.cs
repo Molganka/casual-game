@@ -7,9 +7,9 @@ using UnityEngine.UI;
 
 public class OpenItemButton : MonoBehaviour
 {
-    [SerializeField] private int[] _openCostEveryTime; 
-    [SerializeField] private Sprite _buttonAvailableSprite;
-    [SerializeField] private Sprite _buttonNotAvailableSprite;
+    [SerializeField] private int[] _costs;
+    [SerializeField] private Sprite _accessibleSprite;
+    [SerializeField] private Sprite _inaccessibleSprite;
 
     private Button _button => GetComponent<Button>();
     private Image _image => GetComponent<Image>();
@@ -17,7 +17,7 @@ public class OpenItemButton : MonoBehaviour
     private TextMeshProUGUI _costText => GetComponentInChildren<TextMeshProUGUI>();
 
     private int _currentCostIndex;
-    private bool _canAfford;
+    private bool _onButtonAccessible = true;
 
     private void Awake()
     {
@@ -27,20 +27,21 @@ public class OpenItemButton : MonoBehaviour
     private void Start()
     {
         _button.onClick.AddListener(ButtonPressed);
-        ChangeCostText(_openCostEveryTime[_currentCostIndex]);
+        ChangeCost(_currentCostIndex);
     }
 
     private void Update()
     {
-        TryChangeButtonState();
+        UpdateButtonState();       
     }
 
     private void ButtonPressed()
     {
-        if(_canAfford)
+        if(_onButtonAccessible)
         {
             ItemsWindow.Instance.OpenRandomItem();
-            UiController.Instance.RemoveMoney(_openCostEveryTime[_currentCostIndex]);
+            UiController.Instance.RemoveMoney(_costs[_currentCostIndex]);
+            ChangeCost(_currentCostIndex + 1);
             _animation.Play("ButtonClick");
             SoundUI.Instance.PlaySound(SoundUI.AudioClipsEnum.Open);
         }
@@ -51,27 +52,33 @@ public class OpenItemButton : MonoBehaviour
         }
     }
 
-    private void TryChangeButtonState()
+    private void UpdateButtonState()
     {
-        if(UiController.Instance.Money >= _openCostEveryTime[_currentCostIndex])
+        if (!ItemsWindow.Instance.IsThereAccessibleItems())
         {
-            ChangeButtonState(true);
-            _image.sprite = _buttonAvailableSprite;
+            _onButtonAccessible = false;
+            _image.sprite = _inaccessibleSprite;
+            _costText.SetText("MAX");
+        }
+        else if (UiController.Instance.Money >= _costs[_currentCostIndex])
+        {
+            _onButtonAccessible = true;
+            _image.sprite = _accessibleSprite;
+            return;
         }
         else
         {
-            ChangeButtonState(false);
-            _image.sprite = _buttonNotAvailableSprite;
+            _onButtonAccessible = false;
+            _image.sprite = _inaccessibleSprite;
+        }      
+    }
+
+    private void ChangeCost(int index)
+    {
+        if(index < _costs.Length)
+        {
+            _costText.SetText($"{_costs[index]}");
+            _currentCostIndex = index;
         }
-    }
-
-    private void ChangeButtonState(bool state)
-    {
-        _canAfford = state;
-    }
-
-    private void ChangeCostText(int cost)
-    {
-        _costText.SetText($"{cost}");
     }
 }

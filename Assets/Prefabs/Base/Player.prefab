@@ -550,8 +550,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedMove: 12
-  _finish1Speed: 14
-  _finish2Speed: 13
+  _bonusFinishSpeed: 12
+  _basicFinishSpeed: 12
   _smoothTurn: 0.42
   _velocity: 0
   _gravityScale: 3
@@ -784,11 +784,11 @@ MonoBehaviour:
   _decreaseScale: 0.01
   _maxScoreToIncrease: 50
   _totalDecreaseTime: 0.2
-  _startScore: 3
+  _startScore: 100
   _startColor: {fileID: 2100000, guid: da02ae4179be6854d81cf4731ee50a58, type: 2}
   _basicColor: {fileID: 2100000, guid: da02ae4179be6854d81cf4731ee50a58, type: 2}
   OnDecrease: 0
-  _multiplierDecreaseTime: 0.06
+  _multiplierDecreaseTime: 0.085
   _quickDecrease: 10
   _decreaseTime: 0.12
   _finishLevelTime: 1

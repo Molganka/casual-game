@@ -15,7 +15,7 @@ public class CollisionHandler : MonoBehaviour
 
     private bool _onCheckDown = false;
     private float _rayLength = 3f;
-    private string _targetTag = "BlockCost";
+    private string _targetTag = "Multiplier";
     private FinishBlockData _lastFinishBlockData;
 
     public static FinishTypes FinishType { get; private set; }

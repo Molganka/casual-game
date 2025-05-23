@@ -113,6 +113,11 @@ public class ItemsWindow : MonoBehaviour
         }
     }
 
+    public bool IsThereAccessibleItems()
+    {
+        return _inaccessibleItemTypes[_currentIndexType].InaccessibleItems.Count > 0;
+    }
+
     [Serializable]
     public struct Type
     {

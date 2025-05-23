@@ -44,8 +44,8 @@ public class PlayerController : MonoBehaviour
         UiController.OnGameStarted += StartMove;
         PlayerAppearance.OnFinishPassed += StopMove;
 
-        CollisionHandler.OnBonusFinishEntered += Finish1Settings;
-        CollisionHandler.OnBasicFinishEntered += Finish2Settings;
+        CollisionHandler.OnBonusFinishEntered += BonusFinishSettings;
+        CollisionHandler.OnBasicFinishEntered += BasicFinishSettings;
 
         _targetPositionX = transform.position.x;
     }
@@ -55,8 +55,8 @@ public class PlayerController : MonoBehaviour
         UiController.OnGameStarted -= StartMove;
         PlayerAppearance.OnFinishPassed -= StopMove;
 
-        CollisionHandler.OnBonusFinishEntered -= Finish1Settings;
-        CollisionHandler.OnBasicFinishEntered -= Finish2Settings;
+        CollisionHandler.OnBonusFinishEntered -= BonusFinishSettings;
+        CollisionHandler.OnBasicFinishEntered -= BasicFinishSettings;
     }
 
     private void Update()
@@ -157,13 +157,13 @@ public class PlayerController : MonoBehaviour
         _canMove = false;
     }
 
-    private void Finish1Settings()
+    private void BonusFinishSettings()
     {
         _rangeX = 9.5f;
         _speedMove = _bonusFinishSpeed;
     }
 
-    private void Finish2Settings()
+    private void BasicFinishSettings()
     {
         _rangeX = 9.5f;
 
@@ -171,6 +171,6 @@ public class PlayerController : MonoBehaviour
         _targetPositionX = 0f;
         _speedMove = _basicFinishSpeed;
 
-        Debug.Log("BonusFinish settings end");
+        Debug.Log("BasicFinish settings end");
     }
 }

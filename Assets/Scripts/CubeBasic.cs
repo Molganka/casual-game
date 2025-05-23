@@ -40,7 +40,6 @@ public class CubeBasic : MonoBehaviour
         _transformParent = transform.parent;
         _scoreText = GetComponentInChildren<TextMeshPro>();
         _renderer = GetComponent<Renderer>();
-
         SetCubeScale();
     }
 

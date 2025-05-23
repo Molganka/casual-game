@@ -21,9 +21,14 @@ public class FinishGemsSpawner : MonoBehaviour
         GameData.GemCost = _gemPrice;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         UiController.OnGameStarted += SpawnGems;
+    }
+
+    private void OnDisable()
+    {
+        UiController.OnGameStarted -= SpawnGems;
     }
 
     private void SpawnGems()
@@ -32,8 +37,8 @@ public class FinishGemsSpawner : MonoBehaviour
         for (float z = -_spawnZRange; z < _spawnZRange; z += GameData.GemSpawnRepeat)
         {
             pastX = GetRandomExcept(-_spawnXRange, _spawnXRange+1, pastX, _zDifference);
-            GameObject coin = Instantiate(_gemPrefab, transform.TransformPoint(new Vector3(pastX, _spawnYPosition, z)), transform.rotation);
-            coin.transform.parent = transform;
+            GameObject gem = Instantiate(_gemPrefab, transform.TransformPoint(new Vector3(pastX, _spawnYPosition, z)), transform.rotation);
+            gem.transform.parent = transform;
         }
     }
 
