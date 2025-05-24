@@ -13,11 +13,10 @@ public class LevelManager : MonoBehaviour
 
     private GameObject _loadingScreen;
     [SerializeField] private float _transitionTimeAnimation = 1f;
-    private int _currentLevelIndex = 0;
-    private int _startLevel = 0;
+    private LevelScenes _currentLevelIndex;
 
-    private enum LevelScenes : byte 
-    {     
+    public enum LevelScenes
+    {
         Level1 = 2,
         Level2,
         Level3,
@@ -31,13 +30,14 @@ public class LevelManager : MonoBehaviour
         Level11,
         Level12,
         Level13,
-        Level14
-    }
-
-    private enum GameScenes : byte 
-    {
-        GameScene = 0,
-        PlayerScene
+        Level14,
+        Level15,
+        Level16,
+        Level17,
+        Level18,
+        Level19,
+        Level20,
+        Level21
     }
 
     private void Start()
@@ -45,8 +45,8 @@ public class LevelManager : MonoBehaviour
         _uiController = FindObjectOfType<UiController>();
         _loadingScreen = transform.GetChild(0).gameObject;
 
-        _startLevel = FindAnyObjectByType<LevelData>().Level;
-        _uiController.ChangeLevel(_startLevel);
+        _currentLevelIndex = FindAnyObjectByType<LevelData>().Level;
+        _uiController.ChangeLevel((int)_currentLevelIndex-1);
     }
 
     public void LoadNextLevel()
@@ -59,18 +59,16 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(LoadSceneCoroutine(_currentLevelIndex));
     }
 
-    private IEnumerator LoadSceneCoroutine(int sceneIndex)
+    private IEnumerator LoadSceneCoroutine(LevelScenes sceneIndex)
     {
         _loadingScreen.SetActive(true);
         yield return new WaitForSeconds(_transitionTimeAnimation);
         Debug.Log("ANIMATION END. TRANSITION: " + _transitionTimeAnimation);
 
         // Выгрузка старого уровня
-        if (_currentLevelIndex != -1)
-        {
-            SceneManager.UnloadSceneAsync(_currentLevelIndex);
-            yield return new WaitUntil(() => !SceneManager.GetSceneByBuildIndex(_currentLevelIndex).isLoaded);
-        }
+
+        SceneManager.UnloadSceneAsync((int)_currentLevelIndex);
+        yield return new WaitUntil(() => !SceneManager.GetSceneByBuildIndex((int)_currentLevelIndex).isLoaded);
 
         // Удаляем PlayerScene, если она уже загружена
         if (SceneManager.GetSceneByName("PlayerScene").isLoaded)
@@ -81,7 +79,7 @@ public class LevelManager : MonoBehaviour
         }
 
         // Загружаем новую сцену уровня и PlayerScene
-        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync((int)sceneIndex, LoadSceneMode.Additive);
         AsyncOperation asyncLoadPlayer = SceneManager.LoadSceneAsync("PlayerScene", LoadSceneMode.Additive);
 
         while (!asyncLoadLevel.isDone || !asyncLoadPlayer.isDone)
@@ -92,9 +90,10 @@ public class LevelManager : MonoBehaviour
         Debug.Log("SCENES LOADED");
 
         OnLevelChanged?.Invoke();
-        _uiController.ChangeLevel(sceneIndex-1);
+        _uiController.ChangeLevel((int)sceneIndex - 1);
 
         _currentLevelIndex = sceneIndex;
+        Debug.Log("kkk: " + _currentLevelIndex);
         _loadingScreen.SetActive(false);
     }
 

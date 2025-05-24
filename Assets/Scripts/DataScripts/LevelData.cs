@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class LevelData : MonoBehaviour
 {
-    [SerializeField] private int _level;
-    public int Level { get { return _level; } private set { _level = value; } }
+    [SerializeField] private LevelManager.LevelScenes _level;
+    public LevelManager.LevelScenes Level { get { return _level; } private set { _level = value; } }
 }
