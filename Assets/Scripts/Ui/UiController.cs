@@ -28,7 +28,7 @@ public class UiController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        _money = 0;
+        //_money = 0;
     }
 
     private void Start()

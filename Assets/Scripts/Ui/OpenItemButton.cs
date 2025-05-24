@@ -28,6 +28,7 @@ public class OpenItemButton : MonoBehaviour
     {
         _button.onClick.AddListener(ButtonPressed);
         ChangeCost(_currentCostIndex);
+        UpdateButtonState();
     }
 
     private void Update()
