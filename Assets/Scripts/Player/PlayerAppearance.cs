@@ -66,6 +66,9 @@ public class PlayerAppearance : CubeBasic
 
         WindowManager.ItemsWindowOpened += ChangeLayerToUICamera;
         WindowManager.StartWindowOpened += ChangeLayerToDefault;
+
+        UiController.OnGameStarted += Test;
+        OnFinishPassed += SpawnConfeti;
     }
 
     private void OnDisable()
@@ -79,6 +82,9 @@ public class PlayerAppearance : CubeBasic
 
         WindowManager.ItemsWindowOpened -= ChangeLayerToUICamera;
         WindowManager.StartWindowOpened -= ChangeLayerToDefault;
+
+        UiController.OnGameStarted -= Test;
+        OnFinishPassed -= SpawnConfeti;
     }
 
     protected override void Awake()
@@ -96,8 +102,7 @@ public class PlayerAppearance : CubeBasic
         _animation = GetComponent<Animation>();
         _scoreText = GetComponentInChildren<TextMeshPro>();
         _playerController = GetComponentInParent<PlayerController>();
-        _sceneLoader = FindFirstObjectByType<LevelManager>();
-        OnFinishPassed += SpawnConfeti;
+        _sceneLoader = FindFirstObjectByType<LevelManager>();       
 
         ChangeColor(_startColor);
         DecreaseCube();
@@ -109,6 +114,11 @@ public class PlayerAppearance : CubeBasic
         base.Update();
 
         //some code in future
+    }
+
+    private void Test()
+    {
+        IncreaseCube(_startScore);
     }
 
     private void BlockCollect(GameObject block, BlockData blockData)

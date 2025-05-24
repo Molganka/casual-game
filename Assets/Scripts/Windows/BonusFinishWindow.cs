@@ -19,6 +19,16 @@ public class BonusFinishWindow : MonoBehaviour
             Instance = this;
     }
 
+    private void OnEnable()
+    {
+        UiController.OnGameStarted += ResetGems;
+    }
+
+    private void OnDisable()
+    {
+        UiController.OnGameStarted -= ResetGems;
+    }
+
     private void Start()
     {
         UpdateGemsText();
@@ -29,6 +39,12 @@ public class BonusFinishWindow : MonoBehaviour
         _gems += gems;
         UpdateGemsText();
     }      
+
+    private void ResetGems()
+    {
+        _gems = 0;
+        UpdateGemsText();
+    }
     
     private void UpdateGemsText()
     {

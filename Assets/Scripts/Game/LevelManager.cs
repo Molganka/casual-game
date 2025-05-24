@@ -13,9 +13,8 @@ public class LevelManager : MonoBehaviour
 
     private GameObject _loadingScreen;
     [SerializeField] private float _transitionTimeAnimation = 1f;
-
-    [SerializeField] private int _startLevel;
-    private int _currentLevelIndex;
+    private int _currentLevelIndex = 0;
+    private int _startLevel = 0;
 
     private enum LevelScenes : byte 
     {     
@@ -43,11 +42,10 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        _uiController = FindFirstObjectByType<UiController>();
-
+        _uiController = FindObjectOfType<UiController>();
         _loadingScreen = transform.GetChild(0).gameObject;
-        
-        _currentLevelIndex = _startLevel+1;
+
+        _startLevel = FindAnyObjectByType<LevelData>().Level;
         _uiController.ChangeLevel(_startLevel);
     }
 

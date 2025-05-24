@@ -69,8 +69,9 @@ public class CubeBasic : MonoBehaviour
                 finalScale = (_maxScoreToIncrease - _score) * _increaseScale; //40, 60
             }
         }
-
-        _transformParent.localScale += new Vector3(finalScale, finalScale, finalScale);
+        Debug.Log("   lll l khoubh");
+        transform.parent.localScale += new Vector3(finalScale, finalScale, finalScale);
+        Debug.Log("   lll l khoubh i;");
         _transformParent.position = new Vector3(_transformParent.position.x, _transformParent.position.y + finalScale, _transformParent.position.z);
 
         _score = finalScore; 
