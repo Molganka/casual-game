@@ -27,6 +27,7 @@ public class PlayerAppearance : CubeBasic
     private float _currentPitch;
     private bool _onPitchStrikeGo;
     private Coroutine _lastPitchCoroutine;
+    private Coroutine _decreaseCoroutine;
 
     private bool _canTransformation = true;
     private bool _isThisStart = true;
@@ -102,7 +103,7 @@ public class PlayerAppearance : CubeBasic
         _animation = GetComponent<Animation>();
         _scoreText = GetComponentInChildren<TextMeshPro>();
         _playerController = GetComponentInParent<PlayerController>();
-        _sceneLoader = FindFirstObjectByType<LevelManager>();       
+        _sceneLoader = FindFirstObjectByType<LevelManager>();
 
         ChangeColor(_startColor);
         DecreaseCube();
@@ -165,20 +166,24 @@ public class PlayerAppearance : CubeBasic
         DecreaseCube(_quickDecrease);
     }
 
-    public void StartDecreaseCoroutines()
+    public void StartDecreaseCoroutine()
     {
-        StartCoroutine(DecreaseCoroutine());
+        _decreaseCoroutine = StartCoroutine(DecreaseCoroutine());
+    }
+
+    public void StopDecreaseCoroutine()
+    {
+        if (_decreaseCoroutine != null)
+            StopCoroutine(_decreaseCoroutine);
+        _decreaseCoroutine = null;
     }
 
     private IEnumerator DecreaseCoroutine()
     {
         if (!DecreaseCube())
         {
-            if (OnDecrease)
-            {
-                yield return new WaitForSeconds(_decreaseTime);
-                StartCoroutine(DecreaseCoroutine());
-            }
+            yield return new WaitForSeconds(_decreaseTime);
+            _decreaseCoroutine = StartCoroutine(DecreaseCoroutine());
         }
         else
         {
@@ -235,11 +240,11 @@ public class PlayerAppearance : CubeBasic
         base.IncreaseCube(increase);
 
         if (!_isThisStart)
-        { 
+        {
             _animation.Stop();
             _animation.Play("Increase");
             IncreaseCollectPitch();
-            PlaySound(SoundsEnum.Collect, _currentPitch);          
+            PlaySound(SoundsEnum.Collect, _currentPitch);
         }
     }
 
@@ -249,7 +254,7 @@ public class PlayerAppearance : CubeBasic
         {
             if (base.DecreaseCube(decrease))
             {
-                if(!_onFinishGo)
+                if (!_onFinishGo)
                     PlayerDead();
                 return true;
             }
@@ -285,7 +290,7 @@ public class PlayerAppearance : CubeBasic
         else
         {
             _currentPitch = _startPitch;
-        }       
+        }
 
         _lastPitchCoroutine = StartCoroutine(StrikePitchCoroutine());
     }
@@ -299,28 +304,28 @@ public class PlayerAppearance : CubeBasic
 
     private void SpawnConfeti()
     {
-        if(CollisionHandler.FinishType == CollisionHandler.FinishTypes.Basic)
+        if (CollisionHandler.FinishType == CollisionHandler.FinishTypes.Basic)
             Instantiate(_confeti, _confetiParent);
     }
 
     private void ChangeLayer(Layers layer)
     {
         int goalLayer = LayerMask.NameToLayer("Default");
-        if(layer == Layers.Default)
+        if (layer == Layers.Default)
             goalLayer = LayerMask.NameToLayer("Default");
-        else if(layer == Layers.UICamera)
+        else if (layer == Layers.UICamera)
             goalLayer = LayerMask.NameToLayer("UI Camera");
-        
+
         gameObject.layer = goalLayer;
 
-        if(_itemsPlace.childCount > 0)
+        if (_itemsPlace.childCount > 0)
         {
             foreach (Transform child in _itemsPlace)
             {
                 child.gameObject.layer = goalLayer;
-                child.GetChild(0).gameObject.layer = goalLayer; 
-            }             
-        }              
+                child.GetChild(0).gameObject.layer = goalLayer;
+            }
+        }
     }
 
     private void ChangeLayerToDefault() => ChangeLayer(Layers.Default);
@@ -336,7 +341,6 @@ public class PlayerAppearance : CubeBasic
 
     private void PlayerDead()
     {
-        OnDecrease = false;
         StopAllCoroutines();
         _score = 0;
         ChangeColor(_basicColor);

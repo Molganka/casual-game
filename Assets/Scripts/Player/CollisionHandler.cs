@@ -17,6 +17,7 @@ public class CollisionHandler : MonoBehaviour
     private float _rayLength = 3f;
     private string _targetTag = "Multiplier";
     private FinishBlockData _lastFinishBlockData;
+    private bool _onDecrease;
 
     public static FinishTypes FinishType { get; private set; }
     public static float Multiplier { get; private set; }
@@ -115,19 +116,13 @@ public class CollisionHandler : MonoBehaviour
             FinishType = FinishTypes.Bonus;
             OnBonusFinishEntered?.Invoke();          
         }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (!_playerController.CanMove) { return; }
-
-        if (other.gameObject.CompareTag("Blade"))
+        else if (other.gameObject.CompareTag("Blade"))
         {
-            if (!_playerAppearance.OnDecrease)
+            if (!_onDecrease)
             {
-                Debug.Log("OnDecrease true");
-                _playerAppearance.OnDecrease = true;
-                _playerAppearance.StartDecreaseCoroutines();
+                _onDecrease = true;
+                _playerAppearance.StartDecreaseCoroutine();
+                Debug.Log("DecreaseCoroutine true");
             }
         }
     }
@@ -137,9 +132,10 @@ public class CollisionHandler : MonoBehaviour
         if (!_playerController.CanMove) { return; }
 
         if (other.gameObject.CompareTag("Blade"))
-        {
-            Debug.Log("OnDecrease false");
-            _playerAppearance.OnDecrease = false;
+        {           
+            _onDecrease = false;
+            _playerAppearance.StopDecreaseCoroutine();
+            Debug.Log("DecreaseCoroutine false");
         }
     }
 
