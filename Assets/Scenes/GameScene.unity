@@ -1929,7 +1929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e0b552a9ce529428d5ec959939668c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _costs: 6400000082000000aa000000c8000000e6000000
+  _costs: 6400000096000000e60000005e010000
   _accessibleSprite: {fileID: 21300000, guid: cb37917483ee24fea8fab306393441e5, type: 3}
   _inaccessibleSprite: {fileID: 21300000, guid: 23d2f9d15f15a43c5bf2c57de1a27879,
     type: 3}
@@ -2181,7 +2181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9401e918cb05f04198dbd8293e9a437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _costs: 320000005a000000a00000001d010000ae010000
+  _costs: 320000005a000000a00000001d010000ae010000bc020000
   _upgrades:
   - 6
   - 5.75
@@ -2189,6 +2189,7 @@ MonoBehaviour:
   - 5.25
   - 5
   - 4.75
+  - 4.5
   _upgradeType: 1
   _grayMaterial: {fileID: 2100000, guid: 05fab18dca2fc7a4ebbd3b02c6c585f6, type: 2}
   _priceText: {fileID: 798682407}
@@ -2741,7 +2742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e0b552a9ce529428d5ec959939668c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _costs: 96000000b4000000dc000000180100005e010000
+  _costs: 96000000c80000002c010000c2010000
   _accessibleSprite: {fileID: 21300000, guid: 362cdbc283a1c43a7abec33080b04398, type: 3}
   _inaccessibleSprite: {fileID: 21300000, guid: 23d2f9d15f15a43c5bf2c57de1a27879,
     type: 3}
@@ -5314,7 +5315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9401e918cb05f04198dbd8293e9a437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _costs: 1e0000004600000087000000fa00000090010000
+  _costs: 1e0000004600000087000000fa000000900100009e020000
   _upgrades:
   - 5
   - 6
@@ -5322,6 +5323,7 @@ MonoBehaviour:
   - 9
   - 10
   - 11.5
+  - 12.5
   _upgradeType: 0
   _grayMaterial: {fileID: 2100000, guid: 05fab18dca2fc7a4ebbd3b02c6c585f6, type: 2}
   _priceText: {fileID: 518038820}

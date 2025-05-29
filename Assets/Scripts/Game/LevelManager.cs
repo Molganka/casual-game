@@ -1,19 +1,24 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     public static UnityAction OnLevelChanged;
 
-    private UiController _uiController;
-
-    private GameObject _loadingScreen;
     [SerializeField] private float _transitionTimeAnimation = 1f;
-    private LevelScenes _currentLevelIndex;
+    private int _randomLevelCount;
+
+    private UiController _uiController;
+    private GameObject _loadingScreen;
+    
+    private LevelScenes _currentLevel;
+    private LevelScenes _lastRandomLevel;
+    private LevelScenes _minRandomLevel = LevelScenes.Level10;
+    private LevelScenes _maxRandomLevel = LevelScenes.Level20;
+    private bool _onRandomLevels = false;
 
     public enum LevelScenes
     {
@@ -36,8 +41,7 @@ public class LevelManager : MonoBehaviour
         Level17,
         Level18,
         Level19,
-        Level20,
-        Level21
+        Level20
     }
 
     private void Start()
@@ -45,18 +49,37 @@ public class LevelManager : MonoBehaviour
         _uiController = FindObjectOfType<UiController>();
         _loadingScreen = transform.GetChild(0).gameObject;
 
-        _currentLevelIndex = FindAnyObjectByType<LevelData>().Level;
-        _uiController.ChangeLevel((int)_currentLevelIndex-1);
+        _currentLevel = FindAnyObjectByType<LevelData>().Level;
+        _uiController.ChangeLevel((int)_currentLevel-1);
     }
 
     public void LoadNextLevel()
     {
-        StartCoroutine(LoadSceneCoroutine(_currentLevelIndex + 1));
+        if (_currentLevel == LevelScenes.Level20 && !_onRandomLevels)
+        {
+            _onRandomLevels = true;
+            _randomLevelCount = 20;
+        }
+
+        if (_onRandomLevels)
+        {
+            _lastRandomLevel = _currentLevel;
+            LevelScenes randomLevel = _currentLevel;
+            
+            while(randomLevel == _currentLevel)
+            {
+                randomLevel = (LevelScenes)UnityEngine.Random.Range((int)_minRandomLevel, (int)_maxRandomLevel + 1);
+            }
+
+            StartCoroutine(LoadSceneCoroutine(randomLevel));
+        }
+        else
+            StartCoroutine(LoadSceneCoroutine(_currentLevel + 1));
     }
 
     public void LoadCurrentLevel()
     {
-        StartCoroutine(LoadSceneCoroutine(_currentLevelIndex));
+        StartCoroutine(LoadSceneCoroutine(_currentLevel));
     }
 
     private IEnumerator LoadSceneCoroutine(LevelScenes sceneIndex)
@@ -67,8 +90,8 @@ public class LevelManager : MonoBehaviour
 
         // Выгрузка старого уровня
 
-        SceneManager.UnloadSceneAsync((int)_currentLevelIndex);
-        yield return new WaitUntil(() => !SceneManager.GetSceneByBuildIndex((int)_currentLevelIndex).isLoaded);
+        SceneManager.UnloadSceneAsync((int)_currentLevel);
+        yield return new WaitUntil(() => !SceneManager.GetSceneByBuildIndex((int)_currentLevel).isLoaded);
 
         // Удаляем PlayerScene, если она уже загружена
         if (SceneManager.GetSceneByName("PlayerScene").isLoaded)
@@ -90,12 +113,16 @@ public class LevelManager : MonoBehaviour
         Debug.Log("SCENES LOADED");
 
         OnLevelChanged?.Invoke();
-        _uiController.ChangeLevel((int)sceneIndex - 1);
+        if (_onRandomLevels)
+        {
+            if(sceneIndex != _currentLevel)
+                _uiController.ChangeLevel(++_randomLevelCount);
+        }
+        else
+            _uiController.ChangeLevel((int)sceneIndex - 1);
 
-        _currentLevelIndex = sceneIndex;
-        Debug.Log("kkk: " + _currentLevelIndex);
+        _currentLevel = sceneIndex;
+        Debug.Log("kkk: " + _currentLevel);
         _loadingScreen.SetActive(false);
     }
-
-
 }
