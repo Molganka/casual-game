@@ -299,8 +299,8 @@ public class PlayerAppearance : CubeBasic
 
     private void SpawnConfeti()
     {
-        GameObject confeti = Instantiate(_confeti);
-        confeti.transform.parent = _confetiParent;
+        if(CollisionHandler.FinishType == CollisionHandler.FinishTypes.Basic)
+            Instantiate(_confeti, _confetiParent);
     }
 
     private void ChangeLayer(Layers layer)
