@@ -90,7 +90,8 @@ public class CollisionHandler : MonoBehaviour
         }
         else if (other.TryGetComponent<Coin>(out Coin coin))
         {
-            coin.GetCoin();     
+            coin.GetCoin();
+            UiController.Instance.AddMoney();
         }
         else if(other.CompareTag("Gem"))
         {
