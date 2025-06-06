@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8267787049053666747}
   - component: {fileID: 2033420456041359976}
   - component: {fileID: 1466714395484216484}
+  - component: {fileID: 6700754830642134540}
   m_Layer: 0
   m_Name: Body
   m_TagString: Gem
@@ -50,7 +51,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1030208890501540562}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -105,6 +106,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.6, y: 3.6, z: 1.6}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6700754830642134540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030208890501540562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0cdd70d7b4a7f4a96de2b9914ee3e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2490419295466721573
 GameObject:
   m_ObjectHideFlags: 0

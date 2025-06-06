@@ -153,11 +153,6 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 596c4881def5e0443a5b405042d0b159, type: 2}
-    - target: {fileID: 9193368654012506120, guid: 73e101b6f62d99b498cffc435792905c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

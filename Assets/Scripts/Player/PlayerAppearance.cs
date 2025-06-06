@@ -41,6 +41,7 @@ public class PlayerAppearance : CubeBasic
 
     private PlayerController _playerController;
     private LevelManager _sceneLoader;
+    //private PlayerParticles _playerParticles;
 
     public enum SoundsEnum
     {
@@ -104,6 +105,7 @@ public class PlayerAppearance : CubeBasic
         _scoreText = GetComponentInChildren<TextMeshPro>();
         _playerController = GetComponentInParent<PlayerController>();
         _sceneLoader = FindFirstObjectByType<LevelManager>();
+        //_playerParticles = FindFirstObjectByType<PlayerParticles>();
 
         ChangeColor(_startColor);
         DecreaseCube();
@@ -231,6 +233,7 @@ public class PlayerAppearance : CubeBasic
     {
         _renderer.material = color;
         _currentColor = color;
+        //_playerParticles.ChangeColor(color.color);
         _isAnimationPlaying = false;
         Debug.Log("CURRENT COLOR: " + color);
     }
@@ -263,6 +266,7 @@ public class PlayerAppearance : CubeBasic
             {
                 _animation.Stop();
                 _animation.Play("Damage");
+                //_playerParticles.PlayParticles();
                 PlaySound(SoundsEnum.Damage);
                 _onPitchStrikeGo = false;
             }
