@@ -158,7 +158,7 @@ MonoBehaviour:
   _spawnXRange: 7
   _spawnYPosition: 1.06
   _spawnZRange: 148
-  _zDifference: 0
+  _xDifference: 3
 --- !u!1 &4280875311941598188
 GameObject:
   m_ObjectHideFlags: 0

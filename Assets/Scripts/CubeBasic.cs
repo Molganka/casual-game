@@ -1,7 +1,5 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Video;
 
 public class CubeBasic : MonoBehaviour
 {

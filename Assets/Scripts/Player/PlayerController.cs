@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _bonusFinishSpeed;
     [SerializeField] private float _basicFinishSpeed = 7f;
     [SerializeField, Range(0, 1)] private float _smoothTurn = 0.5f;
-    private SliderInt slider;
     
     private PlayerAppearance _playerAppearance => GetComponentInChildren<PlayerAppearance>();
 

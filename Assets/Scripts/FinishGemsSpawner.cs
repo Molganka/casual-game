@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class FinishGemsSpawner : MonoBehaviour
@@ -12,7 +9,7 @@ public class FinishGemsSpawner : MonoBehaviour
     [SerializeField] private int _spawnXRange;
     [SerializeField] private float _spawnYPosition;
     [SerializeField] private float _spawnZRange;
-    [SerializeField] private int _zDifference;
+    [SerializeField] private int _xDifference;
 
     private int _gemPrice = 5;
 
@@ -36,7 +33,7 @@ public class FinishGemsSpawner : MonoBehaviour
         int pastX = 99;
         for (float z = -_spawnZRange; z < _spawnZRange; z += GameData.GemSpawnRepeat)
         {
-            pastX = GetRandomExcept(-_spawnXRange, _spawnXRange+1, pastX, _zDifference);
+            pastX = GetRandomExcept(-_spawnXRange, _spawnXRange+1, pastX, _xDifference);
             GameObject gem = Instantiate(_gemPrefab, transform.TransformPoint(new Vector3(pastX, _spawnYPosition, z)), transform.rotation);
             gem.transform.parent = transform;
         }

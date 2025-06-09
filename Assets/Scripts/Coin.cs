@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
@@ -15,7 +13,7 @@ public class Coin : MonoBehaviour
     {
         _boxCollider.enabled = false;
         _animation.Play("CoinCollect");
-        _audioSource.Play();
+        if(GameData.OnGameSound) _audioSource.Play();
     }
 }
 

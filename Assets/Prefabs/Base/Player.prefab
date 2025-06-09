@@ -911,7 +911,7 @@ MonoBehaviour:
   _decreaseScale: 0.01
   _maxScoreToIncrease: 50
   _totalDecreaseTime: 0.2
-  _startScore: 8
+  _startScore: 0
   _startColor: {fileID: 2100000, guid: da02ae4179be6854d81cf4731ee50a58, type: 2}
   _basicColor: {fileID: 2100000, guid: da02ae4179be6854d81cf4731ee50a58, type: 2}
   _multiplierDecreaseTime: 0.085

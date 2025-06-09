@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 public class UiController : MonoBehaviour
 {
@@ -18,12 +15,6 @@ public class UiController : MonoBehaviour
 
     [SerializeField] private int _money;
     public int Money { get { return _money; } set { _money = value; } }
-
-    private enum DeviceType : byte
-    {
-        Pc,
-        Mobile
-    }
 
     private void Awake()
     {
