@@ -7,11 +7,25 @@ public class PlayerItems : MonoBehaviour
 {
     [SerializeField] private TrailRenderer _trailRenderer;
     private GameObject _currentItem;
+    private bool _isTrailRendererOn;
+
+    private void OnEnable()
+    {
+        CollisionHandler.OnBasicFinishEntered += TrailOff;
+        CollisionHandler.OnBonusFinishEntered += TrailOff;
+    }
+
+    private void OnDisable()
+    {
+        CollisionHandler.OnBasicFinishEntered -= TrailOff;
+        CollisionHandler.OnBonusFinishEntered -= TrailOff;
+    }
 
     private void Start()
     {
         ChangeItem(ItemsWindow.SelectedItemsUI[0]);
         ChangeTrailMaterial(ItemsWindow.SelectedItemsUI[1]);
+        if(_isTrailRendererOn) TrailOn();
     }
 
     public void ChangeItem(ItemUI itemUI)
@@ -33,12 +47,23 @@ public class PlayerItems : MonoBehaviour
         if (itemUI != null)
         {
             _trailRenderer.material = itemUI.ItemMaterial;
-            _trailRenderer.emitting = true;
+            TrailOn();
+            _isTrailRendererOn = true;
         }
         else
         {
-            _trailRenderer.emitting = false;
+            TrailOff();
+            _isTrailRendererOn = false;
         }
+    }
 
+    private void TrailOff()
+    {
+        _trailRenderer.emitting = false;
+    }
+
+    private void TrailOn()
+    {
+        _trailRenderer.emitting = true;
     }
 }

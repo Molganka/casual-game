@@ -125,6 +125,10 @@ public class CollisionHandler : MonoBehaviour
                 Debug.Log("DecreaseCoroutine true");
             }
         }
+        else if (other.gameObject.CompareTag("FinishEnd"))
+        {
+            _playerAppearance.FinishPassed();
+        }
     }
 
     private void OnTriggerExit(Collider other)

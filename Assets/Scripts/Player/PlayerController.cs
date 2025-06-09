@@ -97,15 +97,17 @@ public class PlayerController : MonoBehaviour
 
         Vector2 inputPosition = Input.touchCount > 0 ? (Vector2)Input.GetTouch(0).position : (Vector2)Input.mousePosition;
 
+        // Запоминаем точку начала свайпа
         if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
-            _lastTouchPosition = inputPosition; // Запоминаем точку начала свайпа
+            _lastTouchPosition = inputPosition;
 
+        // Выполняем свайп
         if (Input.GetMouseButton(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved))
         {
-            float halfScreen = Screen.width / 2;
-            float deltaX = (inputPosition.x - _lastTouchPosition.x) / halfScreen; // Разница свайпа
-            _currentXOffset += deltaX * _rangeX * GameData.Sensitivity; // Двигаем объект
-            _lastTouchPosition = inputPosition; // Обновляем точку касания
+            float screenScaleReference = Mathf.Min(Screen.width, Screen.height); // Нормализация по меньшей стороне
+            float deltaX = (inputPosition.x - _lastTouchPosition.x) / screenScaleReference;
+            _currentXOffset += deltaX * _rangeX * GameData.Sensitivity; // Чувствительность всё ещё можно вручную менять
+            _lastTouchPosition = inputPosition;
         }
 
         return _currentXOffset;

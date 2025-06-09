@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class LevelCompleter : MonoBehaviour
 {   
+    public static LevelCompleter Instance;
+
     [SerializeField] private Animation _animation;
     [SerializeField] private Button _button1;
     [SerializeField] private Button _button2;
@@ -21,6 +23,12 @@ public class LevelCompleter : MonoBehaviour
 
     private int _totalCoins = 0;
     private int _doubleCoins = 0;
+
+    private void Awake()
+    {
+        if(Instance == null)
+            Instance = this;
+    }
 
     private void Start()
     {
@@ -76,17 +84,22 @@ public class LevelCompleter : MonoBehaviour
     public void CollectCoins()
     {
         Debug.Log("COLLECT BASIC");
-        _totalMoneyObject.SetActive(false);
-        _coinCollectEffect.StartShowCoins(_totalCoins);
         DisableButtons();
+        _totalMoneyObject.SetActive(false);
+        _coinCollectEffect.StartShowCoins(_totalCoins);       
     }
 
     public void CollectDoubleCoins()
     {
         Debug.Log("COLLECT DOUBLE");
+        DisableButtons();
+        CrazyGamesSDK.ShowRewardedAd();      
+    }
+
+    public void CollectDoubleCoinsAfterAd()
+    {
         _totalMoneyObject.SetActive(false);
         _coinCollectEffect.StartShowCoins(_doubleCoins);
-        DisableButtons();
     }
 
     private void DisableButtons()

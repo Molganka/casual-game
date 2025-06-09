@@ -202,9 +202,15 @@ public class PlayerAppearance : CubeBasic
         }
         else
         {
-            OnFinishPassed?.Invoke();
-            StartCoroutine(OnLevelFinishCoroutine());
+            FinishPassed();
         }
+    }
+
+    public void FinishPassed()
+    {
+        StopAllCoroutines();
+        OnFinishPassed?.Invoke();
+        StartCoroutine(OnLevelFinishCoroutine());
     }
 
     private IEnumerator OnLevelFinishCoroutine()
