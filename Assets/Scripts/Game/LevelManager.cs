@@ -85,7 +85,6 @@ public class LevelManager : MonoBehaviour
     {
         _loadingScreen.SetActive(true);
         yield return new WaitForSeconds(_transitionTimeAnimation);
-        Debug.Log("ANIMATION END. TRANSITION: " + _transitionTimeAnimation);
 
         // Выгрузка старого уровня
 
@@ -97,7 +96,6 @@ public class LevelManager : MonoBehaviour
         {
             SceneManager.UnloadSceneAsync("PlayerScene");
             yield return new WaitUntil(() => !SceneManager.GetSceneByName("PlayerScene").isLoaded);
-            Debug.Log("PlayerScene выгружена.");
         }
 
         // Загружаем новую сцену уровня и PlayerScene
@@ -109,8 +107,6 @@ public class LevelManager : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("SCENES LOADED");
-
         if (_onRandomLevels)
         {
             if(sceneIndex != CurrentLevel)
@@ -120,7 +116,6 @@ public class LevelManager : MonoBehaviour
             _uiController.ChangeLevel((int)sceneIndex - 1);
 
         CurrentLevel = sceneIndex;
-        Debug.Log("kkk: " + CurrentLevel);
         _loadingScreen.SetActive(false);
         OnLevelChanged?.Invoke();
     }

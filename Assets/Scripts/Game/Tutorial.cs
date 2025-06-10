@@ -37,19 +37,22 @@ public class Tutorial : MonoBehaviour
         LevelManager.OnLevelChanged -= TryToHideStartWindowElements;
     }
 
+    private void Start()
+    {
+        _PCTutorialCanvasGroup.alpha = 0f;
+        _mobileTutorialCanvasGroup.alpha = 0f;
+    }
+
     //при загрузке уровня проверяем превый ли уровень и если да то прячем некоторые элементы для тутора
     private void TryToHideStartWindowElements()
     {
-        Debug.Log("try to hiede");
         if (LevelManager.CurrentLevel == LevelManager.LevelScenes.Level1)
         {
             UiController.Instance.HideStartWindowElements();
-            Debug.Log("Hide1");
         }
         else
         {
             UiController.Instance.ShowStartWindowElements();
-            Debug.Log("Hide");
         }
     }
 

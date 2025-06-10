@@ -57,9 +57,6 @@ public class CollisionHandler : MonoBehaviour
                     _lastFinishBlockData = currentFinishBlockData;
                 }
             }
-
-            // Для визуализации луча в редакторе
-            Debug.DrawRay(transform.position, Vector3.down * _rayLength, Color.red);
         }
     }
 
@@ -79,7 +76,6 @@ public class CollisionHandler : MonoBehaviour
         }
         else if (other.CompareTag("Cube"))
         {
-            Debug.Log("Cube touch");
             EnemyCube enemyCube = other.GetComponentInChildren<EnemyCube>();
            
             OnCubeTrgged?.Invoke(enemyCube);
@@ -121,7 +117,6 @@ public class CollisionHandler : MonoBehaviour
             {
                 _onDecrease = true;
                 _playerAppearance.StartDecreaseCoroutine();
-                Debug.Log("DecreaseCoroutine true");
             }
         }
         else if (other.gameObject.CompareTag("FinishEnd"))
@@ -138,7 +133,6 @@ public class CollisionHandler : MonoBehaviour
         {           
             _onDecrease = false;
             _playerAppearance.StopDecreaseCoroutine();
-            Debug.Log("DecreaseCoroutine false");
         }
     }
 

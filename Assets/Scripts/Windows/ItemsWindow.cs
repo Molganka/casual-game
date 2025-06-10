@@ -35,10 +35,8 @@ public class ItemsWindow : MonoBehaviour
 
     public void ChangeType(int num)
     {
-        Debug.Log("Change type item: " + num);
         num -= 1; // becasuase index from 0
         _currentIndexType = num;
-        Debug.Log("Change current index type: " + _itemTypes[num]);
         ChangeItemsType(_itemTypes[num]);
         ChangeButtonAppearance(_buttons[num]);
     }
@@ -92,7 +90,6 @@ public class ItemsWindow : MonoBehaviour
 
         if (itemUI == SelectedItemsUI[itemUI.Type])
         {
-            Debug.Log("1");
             SelectedItemsUI[itemUI.Type] = null;
 
             if (itemUI.ItemType == ItemUI.ItemTypes.Object)
@@ -102,7 +99,6 @@ public class ItemsWindow : MonoBehaviour
         }
         else
         {
-            Debug.Log("2");
             itemUI.SetSelectOn();
             SelectedItemsUI[itemUI.Type] = itemUI;
 

@@ -68,7 +68,6 @@ public class PlayerAppearance : CubeBasic
         WindowManager.ItemsWindowOpened += ChangeLayerToUICamera;
         WindowManager.StartWindowOpened += ChangeLayerToDefault;
 
-        UiController.OnGameStarted += Test;
         OnFinishPassed += SpawnConfeti;
     }
 
@@ -84,7 +83,6 @@ public class PlayerAppearance : CubeBasic
         WindowManager.ItemsWindowOpened -= ChangeLayerToUICamera;
         WindowManager.StartWindowOpened -= ChangeLayerToDefault;
 
-        UiController.OnGameStarted -= Test;
         OnFinishPassed -= SpawnConfeti;
     }
 
@@ -99,7 +97,6 @@ public class PlayerAppearance : CubeBasic
     {
         base.Start();
 
-        Debug.Log("PLAYER START CALLED");
         _animation = GetComponent<Animation>();
         _scoreText = GetComponentInChildren<TextMeshPro>();
         _playerController = GetComponentInParent<PlayerController>();
@@ -113,11 +110,6 @@ public class PlayerAppearance : CubeBasic
     protected override void Update()
     {
         base.Update();
-    }
-
-    private void Test()
-    {
-        IncreaseCube(_startScore);
     }
 
     private void BlockCollect(GameObject block, BlockData blockData)
@@ -236,7 +228,6 @@ public class PlayerAppearance : CubeBasic
         _renderer.material = color;
         _currentColor = color;
         _isAnimationPlaying = false;
-        Debug.Log("CURRENT COLOR: " + color);
     }
 
     public override void IncreaseCube(int increase = 1)
@@ -353,7 +344,6 @@ public class PlayerAppearance : CubeBasic
         _animation.Stop();
         _animation["Dead"].time = 0;
         _animation.Play("Dead");
-        Debug.Log("Dead");
     }
 
     [System.Serializable]

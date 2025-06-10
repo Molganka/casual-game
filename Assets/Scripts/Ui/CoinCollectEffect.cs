@@ -56,7 +56,6 @@ public class CoinCollectEffect : MonoBehaviour
 
     private void OnAnimationDone()
     {
-        Debug.Log("Coin collect animation done");
         _levelManager.LoadNextLevel();
     }
 

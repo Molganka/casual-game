@@ -7,7 +7,6 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Vector3 _offset;
     [SerializeField] private float _xRange = 2f;
 
-    private Vector3 _currentPosition;
     private float _goalXPosition;
 
     private void LateUpdate()

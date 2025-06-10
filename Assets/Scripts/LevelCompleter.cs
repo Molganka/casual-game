@@ -51,7 +51,6 @@ public class LevelCompleter : MonoBehaviour
         }
 
         _doubleCoins = _totalCoins * 2;
-        Debug.Log("Double Money: " + _doubleCoins);
         _basicMoneyText.SetText(_totalCoins.ToString());
         _bonusMoneyText.SetText(_doubleCoins.ToString());
 
@@ -68,7 +67,6 @@ public class LevelCompleter : MonoBehaviour
                })
                .OnComplete(() =>
                {
-                   Debug.Log("Counting completed!");
                    // Запускаем следующую анимацию
                    PlayNextAnimation();
                })
@@ -82,7 +80,6 @@ public class LevelCompleter : MonoBehaviour
 
     public void CollectCoins()
     {
-        Debug.Log("COLLECT BASIC");
         DisableButtons();
         _totalMoneyObject.SetActive(false);
         _coinCollectEffect.StartShowCoins(_totalCoins);       
@@ -90,7 +87,6 @@ public class LevelCompleter : MonoBehaviour
 
     public void CollectDoubleCoins()
     {
-        Debug.Log("COLLECT DOUBLE");
         DisableButtons();
         CrazyGamesSDK.ShowRewardedAd();      
     }

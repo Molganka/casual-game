@@ -23,7 +23,6 @@ public class SettingsWindow : MonoBehaviour
     private void Start()
     {
         GameData.Sensitivity = _slider.value;
-        Debug.Log("Slider start value: " + _slider.value);
         GameData.OnGameSound = true;
         GameData.OnUISound = true;
 

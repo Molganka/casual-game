@@ -5,7 +5,6 @@ public class EnemyCube : CubeBasic
     protected override void Start()
     {      
         base.Start();
-        Debug.Log("Start Enemy called");
         ChangeColor(_startColor);
         UpdateScoreText();
     }   
@@ -21,7 +20,6 @@ public class EnemyCube : CubeBasic
         DecreaseCube(_score);
         ChangeColor(_basicColor);
         GetComponentInParent<BoxCollider>().enabled = false;
-        Debug.Log("Enemy Dead");
     }
 
     public override void IncreaseCube(int increase = 1)

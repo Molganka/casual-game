@@ -95,16 +95,12 @@ public class WindowManager : MonoBehaviour
 
     public void OpenLevelCompleteWindow()
     {
-        Debug.Log("OpenLevelCompleteWindow");
         ChangeWindow(WindowsEnum.LevelComplete);
         _levelCompleter.StartLevelComplete();
     }
 
     private void ChangeWindow(WindowsEnum window)
     {
-        Debug.Log("KKK: " + window);
-        Debug.Log("KKKK: " + (int)window);    
-        Debug.Log("KKKKk: " + _windows[(int)window]);
         _windows[(int)CurrentWindow]?.SetActive(false);
         _windows[(int)window].SetActive(true);
 

@@ -33,7 +33,6 @@ public class CubeBasic : MonoBehaviour
 
     protected virtual void Start()
     {
-        Debug.Log("START BASE CALLED");
         _transformParent = transform.parent;
         _scoreText = GetComponentInChildren<TextMeshPro>();
         _renderer = GetComponent<Renderer>();

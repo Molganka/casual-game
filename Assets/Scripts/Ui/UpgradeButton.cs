@@ -80,7 +80,6 @@ public class UpgradeButton : MonoBehaviour
 
     private void ChangeUpgrade(int upgradeIndex)
     {
-        Debug.Log(_currentUpgradeIndex + " . " + upgradeIndex);
         if (upgradeIndex < _costs.Length)
             _priceText.SetText($"{_costs[upgradeIndex]}");
         else
@@ -101,6 +100,5 @@ public class UpgradeButton : MonoBehaviour
             GameData.GemSpawnRepeat = _upgrades[upgradeIndex];
 
         _currentUpgradeIndex = upgradeIndex;
-        Debug.Log(_currentUpgradeIndex + " . " + upgradeIndex);
     }
 }

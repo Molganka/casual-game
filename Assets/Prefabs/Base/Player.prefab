@@ -680,6 +680,7 @@ MonoBehaviour:
   _bonusFinishSpeed: 12
   _basicFinishSpeed: 12
   _smoothTurn: 0.42
+  _keysControllerSensitivity: 2.4
   _velocity: 0
   _gravityScale: 3
   _groundChecker: {fileID: 8178491176558365438}

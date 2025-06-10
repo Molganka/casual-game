@@ -9,25 +9,19 @@ public class CrazyGamesSDK : MonoBehaviour
         {
             CrazySDK.Init(() =>
             {
-                Debug.Log("CrazySDK initialized");
+
             });
         }
-
-        Debug.Log($"System INFO: {CrazySDK.User.SystemInfo.device}");
-        Debug.Log($"System INFO 2: {CrazySDK.User.SystemInfo.device.type}");
     }
 
     public static void ShowRewardedAd()
     {
         CrazySDK.Ad.RequestAd(CrazyAdType.Rewarded, () => // or CrazyAdType.Rewarded
         {
-            Debug.Log("Rewarded ad started");
         }, (error) =>
         {
-            Debug.Log("Rewarded ad error");
         }, () =>
         {
-            Debug.Log("Rewarded ad finished corectly");
             LevelCompleter.Instance.CollectDoubleCoinsAfterAd();
         });
     }

@@ -31,11 +31,9 @@ public class ItemUI : MonoBehaviour
     private void Start()
     {
         _button = transform.GetChild(0).GetComponent<Button>();
-        Debug.Log("Button: " + _button);
         _button.onClick.AddListener(OnClick);
 
         _itemsWindow = FindFirstObjectByType<ItemsWindow>();
-        Debug.Log("Items window: " + _itemsWindow);
     }
 
     private void OnClick()

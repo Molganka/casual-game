@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        CheckButtonPressed();
         if (!_canInput || !_canMove)
         {
             return;
@@ -100,7 +101,7 @@ public class PlayerController : MonoBehaviour
         float keyboardInput = Input.GetAxisRaw("Horizontal"); // A = -1, D = 1
         if (keyboardInput != 0)
         {
-            _currentXOffset += keyboardInput * _rangeX * GameData.Sensitivity * _keysControllerSensitivity * Time.deltaTime;
+            _currentXOffset += keyboardInput * _rangeX * _keysControllerSensitivity * Time.deltaTime;
             return _currentXOffset;
         }
 
@@ -155,9 +156,6 @@ public class PlayerController : MonoBehaviour
     public void Jump(float jumpForce)
     {
         _playerAppearance.PlaySound(PlayerAppearance.SoundsEnum.Jump);
-        Debug.Log("Jump");
-        if (_isOnGround)
-            Debug.Log("Jump2");
         _velocity = jumpForce;
     }
 
@@ -184,7 +182,17 @@ public class PlayerController : MonoBehaviour
         _canInput = false;
         _targetPositionX = 0f;
         _speedMove = _basicFinishSpeed;
+    }
 
-        Debug.Log("BasicFinish settings end");
+    private void CheckButtonPressed()
+    {
+        if(WindowManager.CurrentWindow == WindowManager.WindowsEnum.Start)
+        {
+            float horizontalInput = Input.GetAxis("Horizontal");
+            if(horizontalInput != 0)
+            {
+                UiController.AnyPlaceTouched();
+            }
+        }
     }
 }
