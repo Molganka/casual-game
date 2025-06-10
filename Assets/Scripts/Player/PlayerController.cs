@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
@@ -7,7 +9,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _bonusFinishSpeed;
     [SerializeField] private float _basicFinishSpeed = 7f;
     [SerializeField, Range(0, 1)] private float _smoothTurn = 0.5f;
-    
+    [SerializeField] private float _keysControllerSensitivity;
+
     private PlayerAppearance _playerAppearance => GetComponentInChildren<PlayerAppearance>();
 
     private float _rangeX = 8.5f;
@@ -70,6 +73,7 @@ public class PlayerController : MonoBehaviour
         SetRangeByScale();
         // ќграничиваем движение по диапазону
         _targetPositionX = Mathf.Clamp(_targetPositionX, -_currentRangeX, _currentRangeX);
+        _currentXOffset = Math.Clamp(_currentXOffset, -_currentRangeX, _currentRangeX);
     }
 
     private void LateUpdate()
@@ -92,6 +96,15 @@ public class PlayerController : MonoBehaviour
 
     private float GetInput()
     {
+        // ”правление с клавиш A и D
+        float keyboardInput = Input.GetAxisRaw("Horizontal"); // A = -1, D = 1
+        if (keyboardInput != 0)
+        {
+            _currentXOffset += keyboardInput * _rangeX * GameData.Sensitivity * _keysControllerSensitivity * Time.deltaTime;
+            return _currentXOffset;
+        }
+
+        //управление касанием и мышкой
         if (!Input.GetMouseButton(0) && Input.touchCount == 0) return _currentXOffset;
 
         Vector2 inputPosition = Input.touchCount > 0 ? (Vector2)Input.GetTouch(0).position : (Vector2)Input.mousePosition;

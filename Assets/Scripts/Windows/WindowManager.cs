@@ -3,14 +3,16 @@ using UnityEngine.Events;
 
 public class WindowManager : MonoBehaviour
 {
-    [SerializeField] private WindowsEnum _currentWindow;
     [SerializeField] private GameObject[] _windows;
+
+    public static WindowsEnum CurrentWindow;
+    
     private LevelCompleter _levelCompleter;
 
     public static UnityAction ItemsWindowOpened;
     public static UnityAction StartWindowOpened;
 
-    private enum WindowsEnum
+    public enum WindowsEnum
     {
         Start,
         Settings,
@@ -103,9 +105,9 @@ public class WindowManager : MonoBehaviour
         Debug.Log("KKK: " + window);
         Debug.Log("KKKK: " + (int)window);    
         Debug.Log("KKKKk: " + _windows[(int)window]);
-        _windows[(int)_currentWindow]?.SetActive(false);
+        _windows[(int)CurrentWindow]?.SetActive(false);
         _windows[(int)window].SetActive(true);
 
-        _currentWindow = window;
+        CurrentWindow = window;
     }
 }

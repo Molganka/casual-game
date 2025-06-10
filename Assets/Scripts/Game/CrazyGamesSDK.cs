@@ -12,6 +12,9 @@ public class CrazyGamesSDK : MonoBehaviour
                 Debug.Log("CrazySDK initialized");
             });
         }
+
+        Debug.Log($"System INFO: {CrazySDK.User.SystemInfo.device}");
+        Debug.Log($"System INFO 2: {CrazySDK.User.SystemInfo.device.type}");
     }
 
     public static void ShowRewardedAd()

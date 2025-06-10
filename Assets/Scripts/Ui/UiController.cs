@@ -9,6 +9,7 @@ public class UiController : MonoBehaviour
     [SerializeField] private GameObject _startWindow;
     [SerializeField] private GameObject _itemsWindow;
     [SerializeField] private TextMeshProUGUI[] _moneyTextes;
+    [SerializeField] private GameObject[] _startWindowElementsToHide;
     [SerializeField] private TextMeshProUGUI _levelText;
 
     public static UnityAction OnGameStarted;
@@ -58,5 +59,17 @@ public class UiController : MonoBehaviour
     public void RemoveMoney(int value = 1)
     {
         _money -= value;
+    }
+
+    public void HideStartWindowElements()
+    {
+        foreach(var element in _startWindowElementsToHide) 
+            element.gameObject.SetActive(false);
+    }
+
+    public void ShowStartWindowElements()
+    {
+        foreach(var element in _startWindowElementsToHide)
+            element.gameObject.SetActive(true);
     }
 }
