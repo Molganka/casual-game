@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
 
     public static LevelScenes CurrentLevel;
 
+    [SerializeField] private LevelScenes _startLevel;
     [SerializeField] private float _transitionTimeAnimation = 1f;
     private int _randomLevelCount;
 
@@ -49,7 +50,7 @@ public class LevelManager : MonoBehaviour
         _uiController = FindObjectOfType<UiController>();
         _loadingScreen = transform.GetChild(0).gameObject;
         _startLoadingScreen = transform.GetChild(1).gameObject;
-        StartCoroutine(LoadSceneCoroutine(LevelScenes.Level1, true));
+        StartCoroutine(LoadSceneCoroutine(_startLevel, true));
     }
 
     public void LoadNextLevel()

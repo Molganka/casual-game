@@ -4950,16 +4950,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioClips:
-  - audio: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
-    volume: 0.65
+  - audio: {fileID: 8300000, guid: d4b4564ad8ca7254c9d41efb905858eb, type: 3}
+    volume: 1
   - audio: {fileID: 8300000, guid: 523924e8918aa8e47a8e695ff5b7a463, type: 3}
-    volume: 0.65
+    volume: 2
   - audio: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
-    volume: 0.3
+    volume: 0.7
   - audio: {fileID: 8300000, guid: 58f1861005faec646b2ade2e000d1778, type: 3}
-    volume: 1
+    volume: 0.6
   - audio: {fileID: 8300000, guid: 632b1c41f6a368540970d173af4f782f, type: 3}
-    volume: 1
+    volume: 0.9
 --- !u!114 &770628181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9582,6 +9582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe98b1229e7b9049bde40d12c8f84ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startLevel: 2
   _transitionTimeAnimation: 0.45
 --- !u!4 &1553430001
 Transform:

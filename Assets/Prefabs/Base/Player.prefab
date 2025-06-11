@@ -926,18 +926,18 @@ MonoBehaviour:
   _itemsPlace: {fileID: 5713994032993477268}
   _sounds:
   - audioClip: {fileID: 8300000, guid: fb5c285c2df3e3c499d85185274beae0, type: 3}
-    volume: 0.6
+    volume: 1.35
   - audioClip: {fileID: 8300000, guid: b2d5d7e57895b2745b155d240ed5a5a5, type: 3}
-    volume: 0.6
+    volume: 2.9
   - audioClip: {fileID: 8300000, guid: 397f887ca5a702240b4c9338fe65fb9c, type: 3}
-    volume: 0.9
+    volume: 3.6
   - audioClip: {fileID: 8300000, guid: 577dc434e0f3400469f49475da71b7e7, type: 3}
-    volume: 1
+    volume: 1.3
   _audioSource: {fileID: 6182420325807250748}
   _startPitch: 0.85
   _maxtPitch: 1.25
-  _increasePitch: 0.02
-  _pitchStrikeResetTime: 2
+  _increasePitch: 0.03
+  _pitchStrikeResetTime: 1.5
 --- !u!111 &6563979037869849772
 Animation:
   m_ObjectHideFlags: 0
