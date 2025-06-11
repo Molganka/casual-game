@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
 
     private UiController _uiController;
     private GameObject _loadingScreen;
+    private GameObject _startLoadingScreen;
 
     private LevelScenes _minRandomLevel = LevelScenes.Level10;
     private LevelScenes _maxRandomLevel = LevelScenes.Level20;
@@ -47,10 +48,8 @@ public class LevelManager : MonoBehaviour
     {
         _uiController = FindObjectOfType<UiController>();
         _loadingScreen = transform.GetChild(0).gameObject;
-
-        CurrentLevel = FindAnyObjectByType<LevelData>().Level;
-        _uiController.ChangeLevel((int)CurrentLevel-1);
-        OnLevelChanged?.Invoke();
+        _startLoadingScreen = transform.GetChild(1).gameObject;
+        StartCoroutine(LoadSceneCoroutine(LevelScenes.Level1, true));
     }
 
     public void LoadNextLevel()
@@ -70,26 +69,36 @@ public class LevelManager : MonoBehaviour
                 randomLevel = (LevelScenes)UnityEngine.Random.Range((int)_minRandomLevel, (int)_maxRandomLevel + 1);
             }
 
-            StartCoroutine(LoadSceneCoroutine(randomLevel));
+            StartCoroutine(LoadSceneCoroutine(randomLevel, false));
         }
         else
-            StartCoroutine(LoadSceneCoroutine(CurrentLevel + 1));
+            StartCoroutine(LoadSceneCoroutine(CurrentLevel + 1, false));
     }
 
     public void LoadCurrentLevel()
     {
-        StartCoroutine(LoadSceneCoroutine(CurrentLevel));
+        StartCoroutine(LoadSceneCoroutine(CurrentLevel, false));
     }
 
-    private IEnumerator LoadSceneCoroutine(LevelScenes sceneIndex)
+    private IEnumerator LoadSceneCoroutine(LevelScenes sceneIndex, bool isStartLoad)
     {
-        _loadingScreen.SetActive(true);
-        yield return new WaitForSeconds(_transitionTimeAnimation);
+        if (isStartLoad)
+        {
+            _startLoadingScreen.SetActive(true);
+        }
+        else
+        {
+            _loadingScreen.SetActive(true);
+            yield return new WaitForSeconds(_transitionTimeAnimation);
+        }
 
         // Выгрузка старого уровня
 
-        SceneManager.UnloadSceneAsync((int)CurrentLevel);
-        yield return new WaitUntil(() => !SceneManager.GetSceneByBuildIndex((int)CurrentLevel).isLoaded);
+        if (!isStartLoad)
+        {
+            SceneManager.UnloadSceneAsync((int)CurrentLevel);
+            yield return new WaitUntil(() => !SceneManager.GetSceneByBuildIndex((int)CurrentLevel).isLoaded);
+        }
 
         // Удаляем PlayerScene, если она уже загружена
         if (SceneManager.GetSceneByName("PlayerScene").isLoaded)
@@ -116,7 +125,8 @@ public class LevelManager : MonoBehaviour
             _uiController.ChangeLevel((int)sceneIndex - 1);
 
         CurrentLevel = sceneIndex;
-        _loadingScreen.SetActive(false);
+        _startLoadingScreen.SetActive(false);
+        _loadingScreen.SetActive(false);        
         OnLevelChanged?.Invoke();
     }
 }

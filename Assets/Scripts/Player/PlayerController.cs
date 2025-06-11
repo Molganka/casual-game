@@ -101,25 +101,23 @@ public class PlayerController : MonoBehaviour
         float keyboardInput = Input.GetAxisRaw("Horizontal"); // A = -1, D = 1
         if (keyboardInput != 0)
         {
-            _currentXOffset += keyboardInput * _rangeX * _keysControllerSensitivity * Time.deltaTime;
+            _currentXOffset += keyboardInput * _rangeX * GameData.Sensitivity * Time.deltaTime;
             return _currentXOffset;
         }
 
-        //управление касанием и мышкой
+        // Управление мышью или касанием
         if (!Input.GetMouseButton(0) && Input.touchCount == 0) return _currentXOffset;
 
         Vector2 inputPosition = Input.touchCount > 0 ? (Vector2)Input.GetTouch(0).position : (Vector2)Input.mousePosition;
 
-        // Запоминаем точку начала свайпа
         if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
             _lastTouchPosition = inputPosition;
 
-        // Выполняем свайп
         if (Input.GetMouseButton(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved))
         {
-            float screenScaleReference = Mathf.Min(Screen.width, Screen.height); // Нормализация по меньшей стороне
+            float screenScaleReference = Mathf.Min(Screen.width, Screen.height);
             float deltaX = (inputPosition.x - _lastTouchPosition.x) / screenScaleReference;
-            _currentXOffset += deltaX * _rangeX * GameData.Sensitivity; // Чувствительность всё ещё можно вручную менять
+            _currentXOffset += deltaX * _rangeX * GameData.Sensitivity;
             _lastTouchPosition = inputPosition;
         }
 
