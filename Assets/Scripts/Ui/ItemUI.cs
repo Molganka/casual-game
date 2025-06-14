@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+[Serializable]
 public class ItemUI : MonoBehaviour
 { 
     [SerializeField] private GameObject _selectImage;
@@ -38,9 +40,9 @@ public class ItemUI : MonoBehaviour
 
     private void OnClick()
     {
-        _itemsWindow.ChangeItem(this);
+        _itemsWindow.ChangeItem(Type, ItemsWindow.Instance.Types[Type].AccessibleItems.IndexOf(gameObject));
     }
 
     public void SetSelectOn() => _selectImage.SetActive(true);
-    public void SetSelectOff() => _selectImage.SetActive(false);
+    public void SetSelectOff() { _selectImage.SetActive(false); Debug.Log("false" + gameObject.name); }
 }

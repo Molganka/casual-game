@@ -16,15 +16,10 @@ public class OpenItemButton : MonoBehaviour
     private int _currentCostIndex;
     private bool _onButtonAccessible = true;
 
-    private void Awake()
-    {
-        _currentCostIndex = 0;
-    }
-
     private void Start()
     {
         _button.onClick.AddListener(ButtonPressed);
-        ChangeCost(_currentCostIndex);
+        ChangeCost(SaveManager.LoadOpenItemButtonIndex());
         UpdateButtonState();
     }
 
@@ -39,6 +34,7 @@ public class OpenItemButton : MonoBehaviour
         {
             ItemsWindow.Instance.OpenRandomItem();
             UiController.Instance.RemoveMoney(_costs[_currentCostIndex]);
+            SaveManager.SaveMoney(UiController.Instance.Money);
             ChangeCost(_currentCostIndex + 1);
             _animation.Play("ButtonClick");
             SoundUI.Instance.PlaySound(SoundUI.AudioClipsEnum.Open);
@@ -77,6 +73,7 @@ public class OpenItemButton : MonoBehaviour
         {
             _costText.SetText($"{_costs[index]}");
             _currentCostIndex = index;
+            SaveManager.SaveOpenItemButtonIndex(_currentCostIndex);
         }
     }
 }

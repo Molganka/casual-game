@@ -22,13 +22,15 @@ public class SettingsWindow : MonoBehaviour
 
     private void Start()
     {
-        GameData.Sensitivity = _slider.value;
-        GameData.OnGameSound = true;
-        GameData.OnUISound = true;
+        SetDefaultValues(); 
+        SaveManager.LoadSettings();
+        SetNewValues();
+        
 
         _slider.onValueChanged.AddListener((v) =>
         {
             GameData.Sensitivity = v;
+            SaveManager.SaveSettings();
         });       
     }
 
@@ -46,6 +48,7 @@ public class SettingsWindow : MonoBehaviour
             _imageIcon1.color = _offColor;
             GameData.OnGameSound = false;
         }
+        SaveManager.SaveSettings();
     }
 
     private void ChangeUISoundCondition()
@@ -62,5 +65,23 @@ public class SettingsWindow : MonoBehaviour
             _imageIcon2.color = _offColor;
             GameData.OnUISound = false;
         }
+        SaveManager.SaveSettings();
+    }
+
+    private void SetDefaultValues()
+    {
+        GameData.Sensitivity = _slider.value;
+        GameData.OnGameSound = true;
+        GameData.OnUISound = true;
+    }
+
+    private void SetNewValues()
+    {
+        _slider.value = GameData.Sensitivity;
+
+        if (!GameData.OnGameSound)
+            ChangeGameSoundCondition();
+        if (!GameData.OnUISound)
+            ChangeUISoundCondition();
     }
 }

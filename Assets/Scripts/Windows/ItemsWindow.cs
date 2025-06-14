@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ItemsWindow : MonoBehaviour
@@ -10,27 +11,68 @@ public class ItemsWindow : MonoBehaviour
 
     [SerializeField] private GameObject[] _itemTypes;
     [SerializeField] private GameObject[] _buttons;
-    [SerializeField] private Type[] _inaccessibleItemTypes;  
     [SerializeField] private Color _textColorForActiveButton;
     [SerializeField] private Color _textColorForDeactiveButton;
     [SerializeField] private int _buttonAlphaValue;
-    public static int TypesCount = 2;
 
-    private PlayerItems _playerItems => FindFirstObjectByType<PlayerItems>();
-    public static ItemUI[] SelectedItemsUI = new ItemUI[TypesCount];
+    private PlayerItems _playerItems;
+
+    public Type[] Types;
+    public static int[] SelectedItemsUI = new int[2] {-1, -1};
     private GameObject _currentType;
     private GameObject _currentButton;
     private int _currentIndexType;
 
     private void Awake()
     {
-        Instance = this;
+        Debug.Log("instance");
+        if(Instance == null)
+            Instance = this;
     }
 
-    private void Start()
+    private void OnEnable()
+    {
+        LevelManager.OnLevelChanged += FindPlayerItems;
+        LevelManager.OnLevelChanged += LoadItems;
+    }
+
+    private void OnDisable()
+    {
+        LevelManager.OnLevelChanged -= FindPlayerItems;
+        LevelManager.OnLevelChanged -= LoadItems;
+    }
+
+    private void FindPlayerItems()
+    {
+        _playerItems = FindFirstObjectByType<PlayerItems>();
+    }
+
+    private void LoadItems()
     {
         _currentButton = _buttons[0];
         ChangeType(1);
+
+        for (int i = 1; i <= 2; ++i)
+        {
+            Type loadType = SaveManager.LoadItems(i);
+            Debug.Log(loadType);
+            if (loadType.InaccessibleItems != null && loadType.AccessibleItems != null)
+            {
+                Types[i - 1] = loadType;
+                foreach (GameObject item in Types[i - 1].AccessibleItems)
+                {
+                    OpenItem(item);
+                }
+            }
+
+            int loadItem = SaveManager.LoadSelectedItem(i);
+            if (loadItem != -1)
+            {
+                ChangeItem(i - 1, loadItem);
+            }
+        }
+
+        LevelManager.OnLevelChanged -= LoadItems;
     }
 
     public void ChangeType(int num)
@@ -69,12 +111,15 @@ public class ItemsWindow : MonoBehaviour
 
     public void OpenRandomItem()
     {
-        Type type = _inaccessibleItemTypes[_currentIndexType];
+        Debug.Log(_currentIndexType);
+        Type type = Types[_currentIndexType];
         if (type.InaccessibleItems.Count != 0)
         {
-            int randomIndex = UnityEngine.Random.Range(0, type.InaccessibleItems.Count);
-            OpenItem(type.InaccessibleItems[randomIndex]);
-            type.InaccessibleItems.RemoveAt(randomIndex);
+            GameObject randomItem = type.InaccessibleItems[UnityEngine.Random.Range(0, type.InaccessibleItems.Count)];
+            OpenItem(randomItem);
+            type.AccessibleItems.Add(randomItem);
+            type.InaccessibleItems.Remove(randomItem);
+            SaveManager.SaveItems(type, _currentIndexType+1);
         }
     }
     private void OpenItem(GameObject item)
@@ -83,40 +128,52 @@ public class ItemsWindow : MonoBehaviour
         item.transform.GetChild(1).gameObject.SetActive(false);
     }
 
-    public void ChangeItem(ItemUI itemUI)
+    public void ChangeItem(int type, int itemNum)
     {
-        if(SelectedItemsUI[itemUI.Type] != null)
-            SelectedItemsUI[itemUI.Type].SetSelectOff();
-
-        if (itemUI == SelectedItemsUI[itemUI.Type])
+        Debug.Log(type);
+        Debug.Log(itemNum);
+        GameObject itemObject = Types[type].AccessibleItems[itemNum];
+        ItemUI itemUI = itemObject.GetComponent<ItemUI>();
+        Debug.Log(SelectedItemsUI[type] + " LLL");
+        if (SelectedItemsUI[type] != -1)
         {
-            SelectedItemsUI[itemUI.Type] = null;
+            Types[type].AccessibleItems[SelectedItemsUI[type]].GetComponent<ItemUI>().SetSelectOff();
+            Debug.Log("selected off");
+        }
+
+        if (SelectedItemsUI[type] != -1 && itemObject == Types[type].AccessibleItems[SelectedItemsUI[type]])
+        {
+            SelectedItemsUI[type] = -1;
 
             if (itemUI.ItemType == ItemUI.ItemTypes.Object)
                 _playerItems.ChangeItem(null);
             else if (itemUI.ItemType == ItemUI.ItemTypes.Material)
                 _playerItems.ChangeTrailMaterial(null);
+            SaveManager.SaveSelectedItem(type+1, -1);
         }
         else
         {
             itemUI.SetSelectOn();
-            SelectedItemsUI[itemUI.Type] = itemUI;
+            SelectedItemsUI[type] = itemNum;
 
+            Debug.Log(_playerItems);
             if (itemUI.ItemType == ItemUI.ItemTypes.Object)
                 _playerItems.ChangeItem(itemUI);
             else if (itemUI.ItemType == ItemUI.ItemTypes.Material)
                 _playerItems.ChangeTrailMaterial(itemUI);
+            SaveManager.SaveSelectedItem(type+1, itemNum);
         }
     }
 
     public bool IsThereAccessibleItems()
     {
-        return _inaccessibleItemTypes[_currentIndexType].InaccessibleItems.Count > 0;
+        return Types[_currentIndexType].InaccessibleItems.Count > 0;
     }
 
     [Serializable]
     public struct Type
     {
         public List<GameObject> InaccessibleItems;
+        public List<GameObject> AccessibleItems;
     }
 }

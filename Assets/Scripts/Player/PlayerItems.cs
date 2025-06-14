@@ -20,8 +20,11 @@ public class PlayerItems : MonoBehaviour
 
     private void Start()
     {
-        ChangeItem(ItemsWindow.SelectedItemsUI[0]);
-        ChangeTrailMaterial(ItemsWindow.SelectedItemsUI[1]);
+        if (ItemsWindow.SelectedItemsUI[0] != -1)
+            ChangeItem(ItemsWindow.Instance.Types[0].AccessibleItems[ItemsWindow.SelectedItemsUI[0]].GetComponent<ItemUI>());
+        if (ItemsWindow.SelectedItemsUI[1] != -1)
+            ChangeTrailMaterial(ItemsWindow.Instance.Types[1].AccessibleItems[ItemsWindow.SelectedItemsUI[1]].GetComponent<ItemUI>());
+
         if(_isTrailRendererOn) TrailOn();
     }
 

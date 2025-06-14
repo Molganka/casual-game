@@ -30,13 +30,18 @@ public class UpgradeButton : MonoBehaviour
 
     private void Awake()
     {
-        _currentUpgradeIndex = 0;
         _updateIcon.SetActive(true);
-        ChangeUpgrade(0);       
     }
 
     private void Start()
     {
+        if (_upgradeType == UpgradeTypes.Multiplier)
+            _currentUpgradeIndex = SaveManager.LoadCoinUpgradeIndex();
+        else if (_upgradeType == UpgradeTypes.GemSpawnRepeat)
+            _currentUpgradeIndex = SaveManager.LoadGemUpgradeIndex();
+
+        ChangeUpgrade(_currentUpgradeIndex, false);
+
         _button.onClick.AddListener(ButtonClicked);        
     }
 
@@ -67,7 +72,7 @@ public class UpgradeButton : MonoBehaviour
     {
         if (_canAfford && !_onUpgradeMax)
         {
-            ChangeUpgrade(_currentUpgradeIndex+1);           
+            ChangeUpgrade(_currentUpgradeIndex+1, true);           
 
             _animation.Play();
             SoundUI.Instance.PlaySound(SoundUI.AudioClipsEnum.Item);
@@ -78,7 +83,7 @@ public class UpgradeButton : MonoBehaviour
         }
     }
 
-    private void ChangeUpgrade(int upgradeIndex)
+    private void ChangeUpgrade(int upgradeIndex, bool haveToPay)
     {
         if (upgradeIndex < _costs.Length)
             _priceText.SetText($"{_costs[upgradeIndex]}");
@@ -91,13 +96,22 @@ public class UpgradeButton : MonoBehaviour
 
         _levelText.SetText($"LVL {upgradeIndex+1}");
 
-        if(upgradeIndex > 0)
+        if (haveToPay)
+        {
             UiController.Instance.RemoveMoney(_costs[_currentUpgradeIndex]);
+            UiController.Instance.SaveMoney();
+        }
 
         if (_upgradeType == UpgradeTypes.Multiplier)
+        {
             GameData.BlockCost = _upgrades[upgradeIndex];
+            SaveManager.SaveCoinUpgradeIndex(upgradeIndex);
+        }
         else if (_upgradeType == UpgradeTypes.GemSpawnRepeat)
+        {
             GameData.GemSpawnRepeat = _upgrades[upgradeIndex];
+            SaveManager.SaveGemUpgradeIndex(upgradeIndex);
+        }
 
         _currentUpgradeIndex = upgradeIndex;
     }

@@ -46,11 +46,12 @@ public class LevelManager : MonoBehaviour
     }
 
     private void Start()
-    {
+    {       
         _uiController = FindObjectOfType<UiController>();
         _loadingScreen = transform.GetChild(0).gameObject;
         _startLoadingScreen = transform.GetChild(1).gameObject;
-        StartCoroutine(LoadSceneCoroutine(_startLevel, true));
+
+        StartCoroutine(LoadSceneCoroutine(SaveManager.LoadLevel(_startLevel), true));
     }
 
     public void LoadNextLevel()
@@ -109,6 +110,8 @@ public class LevelManager : MonoBehaviour
         }
 
         // Загружаем новую сцену уровня и PlayerScene
+        Debug.Log("d: " + sceneIndex);
+        Debug.Log("d:d " + (int)sceneIndex);
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync((int)sceneIndex, LoadSceneMode.Additive);
         AsyncOperation asyncLoadPlayer = SceneManager.LoadSceneAsync("PlayerScene", LoadSceneMode.Additive);
 
@@ -116,6 +119,7 @@ public class LevelManager : MonoBehaviour
         {
             yield return null;
         }
+        Debug.Log("COMPLETE2");
 
         if (_onRandomLevels)
         {
@@ -127,7 +131,9 @@ public class LevelManager : MonoBehaviour
 
         CurrentLevel = sceneIndex;
         _startLoadingScreen.SetActive(false);
-        _loadingScreen.SetActive(false);        
+        _loadingScreen.SetActive(false);
+        SaveManager.SaveLevel(sceneIndex);
+        
         OnLevelChanged?.Invoke();
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class WindowManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _windows;
+    [SerializeField] private Window[] _windows;
 
     public static WindowsEnum CurrentWindow;
     
@@ -24,11 +24,6 @@ public class WindowManager : MonoBehaviour
         LevelComplete
     }
 
-    private void Awake()
-    {
-        OpenUpgradeWindow();
-    }
-
     private void Start()
     {
         _levelCompleter = FindFirstObjectByType<LevelCompleter>();
@@ -44,8 +39,10 @@ public class WindowManager : MonoBehaviour
 
     private void HideAllWindows()
     {
-        foreach(var window in _windows)
-            window.gameObject.SetActive(false);
+        for(int i = 1; i < _windows.Length; ++i)
+        {
+            _windows[i].Hide();
+        }           
     }
 
     private void OpenFinishWindow()
@@ -101,8 +98,8 @@ public class WindowManager : MonoBehaviour
 
     private void ChangeWindow(WindowsEnum window)
     {
-        _windows[(int)CurrentWindow]?.SetActive(false);
-        _windows[(int)window].SetActive(true);
+        _windows[(int)CurrentWindow].Hide();
+        _windows[(int)window].Show();
 
         CurrentWindow = window;
     }

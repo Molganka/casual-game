@@ -4,27 +4,41 @@ using UnityEngine.Events;
 
 public class UiController : MonoBehaviour
 {
-    public static UiController Instance;
-
     [SerializeField] private GameObject _startWindow;
     [SerializeField] private GameObject _itemsWindow;
     [SerializeField] private TextMeshProUGUI[] _moneyTextes;
     [SerializeField] private GameObject[] _startWindowElementsToHide;
     [SerializeField] private TextMeshProUGUI _levelText;
 
+    [SerializeField] private int _startMoney;
+
+    public static UiController Instance;
+
     public static UnityAction OnGameStarted;
 
-    [SerializeField] private int _money;
+    private int _money; 
     public int Money { get { return _money; } set { _money = value; } }
 
     private void Awake()
     {
-        Instance = this;
-        //_money = 0;
+        if(Instance == null)
+            Instance = this;
+    }
+
+    private void OnEnable()
+    {
+        LevelManager.OnLevelChanged += SaveMoney;
+    }
+
+    private void OnDisable()
+    {
+        LevelManager.OnLevelChanged -= SaveMoney;
     }
 
     private void Start()
     {
+        Money = SaveManager.LoadMoney(_startMoney);
+
         ChangeAllMoneyDisplay();
     }
 
@@ -60,6 +74,8 @@ public class UiController : MonoBehaviour
     {
         _money -= value;
     }
+
+    public void SaveMoney() => SaveManager.SaveMoney(Money);
 
     public void HideStartWindowElements()
     {
