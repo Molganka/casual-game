@@ -25,7 +25,6 @@ public class ItemsWindow : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("instance");
         if(Instance == null)
             Instance = this;
     }
@@ -55,7 +54,6 @@ public class ItemsWindow : MonoBehaviour
         for (int i = 1; i <= 2; ++i)
         {
             Type loadType = SaveManager.LoadItems(i);
-            Debug.Log(loadType);
             if (loadType.InaccessibleItems != null && loadType.AccessibleItems != null)
             {
                 Types[i - 1] = loadType;
@@ -111,7 +109,6 @@ public class ItemsWindow : MonoBehaviour
 
     public void OpenRandomItem()
     {
-        Debug.Log(_currentIndexType);
         Type type = Types[_currentIndexType];
         if (type.InaccessibleItems.Count != 0)
         {
@@ -130,15 +127,11 @@ public class ItemsWindow : MonoBehaviour
 
     public void ChangeItem(int type, int itemNum)
     {
-        Debug.Log(type);
-        Debug.Log(itemNum);
         GameObject itemObject = Types[type].AccessibleItems[itemNum];
         ItemUI itemUI = itemObject.GetComponent<ItemUI>();
-        Debug.Log(SelectedItemsUI[type] + " LLL");
         if (SelectedItemsUI[type] != -1)
         {
             Types[type].AccessibleItems[SelectedItemsUI[type]].GetComponent<ItemUI>().SetSelectOff();
-            Debug.Log("selected off");
         }
 
         if (SelectedItemsUI[type] != -1 && itemObject == Types[type].AccessibleItems[SelectedItemsUI[type]])
@@ -156,7 +149,6 @@ public class ItemsWindow : MonoBehaviour
             itemUI.SetSelectOn();
             SelectedItemsUI[type] = itemNum;
 
-            Debug.Log(_playerItems);
             if (itemUI.ItemType == ItemUI.ItemTypes.Object)
                 _playerItems.ChangeItem(itemUI);
             else if (itemUI.ItemType == ItemUI.ItemTypes.Material)

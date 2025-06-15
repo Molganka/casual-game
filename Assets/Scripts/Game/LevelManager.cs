@@ -110,8 +110,6 @@ public class LevelManager : MonoBehaviour
         }
 
         // Загружаем новую сцену уровня и PlayerScene
-        Debug.Log("d: " + sceneIndex);
-        Debug.Log("d:d " + (int)sceneIndex);
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync((int)sceneIndex, LoadSceneMode.Additive);
         AsyncOperation asyncLoadPlayer = SceneManager.LoadSceneAsync("PlayerScene", LoadSceneMode.Additive);
 
@@ -119,7 +117,6 @@ public class LevelManager : MonoBehaviour
         {
             yield return null;
         }
-        Debug.Log("COMPLETE2");
 
         if (_onRandomLevels)
         {

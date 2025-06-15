@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour
@@ -143,11 +142,5 @@ public class SaveManager : MonoBehaviour
     public static int LoadOpenItemButtonIndex()
     {
         return PlayerPrefs.GetInt("OpenItemButtonIndex", 0);
-    }
-
-    //OTHER
-    public void ResetSaveDatas()
-    {
-        PlayerPrefs.DeleteAll();
     }
 }

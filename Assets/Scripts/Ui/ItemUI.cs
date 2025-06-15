@@ -44,5 +44,5 @@ public class ItemUI : MonoBehaviour
     }
 
     public void SetSelectOn() => _selectImage.SetActive(true);
-    public void SetSelectOff() { _selectImage.SetActive(false); Debug.Log("false" + gameObject.name); }
+    public void SetSelectOff() => _selectImage.SetActive(false);
 }
