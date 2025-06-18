@@ -338,12 +338,29 @@ namespace CrazyGames
                                 break;
                         }
 
+                        string applicationType;
+
+                        switch (_crazySDK.Settings.applicationType)
+                        {
+                            case CrazySettingsApplicationType.google_play_store:
+                                applicationType = "google_play_store";
+                                break;
+                            case CrazySettingsApplicationType.pwa:
+                                applicationType = "pwa";
+                                break;
+                            case CrazySettingsApplicationType.web:
+                            default:
+                                applicationType = "web";
+                                break;
+                        }
+
                         return new SystemInfo
                         {
                             countryCode = "DemoCountry",
                             browser = new Software { name = "DemoBrowser", version = "DemoVersion" },
                             os = new Software { name = "DemoSoftware", version = "DemoVersion" },
                             device = new Device { type = deviceType },
+                            applicationType = applicationType,
                         };
                     }
                 );

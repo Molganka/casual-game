@@ -21,4 +21,6 @@ MonoBehaviour:
   getTokenResponse: 0
   disableSdkLogs: 0
   disableAdPreviews: 0
-  deviceType: 1
+  alwaysThrowAdError: 0
+  deviceType: 0
+  applicationType: 0

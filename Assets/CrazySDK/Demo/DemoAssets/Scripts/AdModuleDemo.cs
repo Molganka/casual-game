@@ -26,6 +26,11 @@ namespace CrazyGames
                 ShowRewardedAd();
             }
 
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                PrefetchAd();
+            }
+
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Cursor.lockState = CursorLockMode.None;
@@ -69,6 +74,11 @@ namespace CrazyGames
                     Debug.Log("Rewarded ad finished, reward the player here");
                 }
             );
+        }
+
+        public void PrefetchAd()
+        {
+            CrazySDK.Ad.PrefetchAd(CrazyAdType.Rewarded);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace CrazyGames
 {
     public class CrazySDK : MonoBehaviour
     {
-        public const string Version = "5.16.0";
+        public const string Version = "5.17.0";
         public CrazySettings Settings { get; private set; }
         public static bool IsInitialized { get; private set; }
         public static bool IsShutDown { get; private set; }
@@ -248,7 +248,7 @@ namespace CrazyGames
         {
             if (!IsInitialized)
             {
-                throw new Exception("CrazySDK not initialized. Please call CrazySDK.Instance.Init() before using the SDK.");
+                throw new Exception(MessageStrings.SDK_NOT_INITIALIZED);
             }
 
             if (Application.platform == RuntimePlatform.WebGLPlayer)
@@ -268,7 +268,7 @@ namespace CrazyGames
         {
             if (!IsInitialized)
             {
-                throw new Exception("CrazySDK not initialized. Please call CrazySDK.Instance.Init() before using the SDK.");
+                throw new Exception(MessageStrings.SDK_NOT_INITIALIZED);
             }
 
             if (Application.platform == RuntimePlatform.WebGLPlayer)
@@ -370,6 +370,8 @@ namespace CrazyGames
         public Software os;
 
         public Device device;
+
+        public string applicationType;
 
         public override string ToString()
         {

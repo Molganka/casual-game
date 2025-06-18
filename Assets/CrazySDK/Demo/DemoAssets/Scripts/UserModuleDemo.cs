@@ -183,6 +183,7 @@ namespace CrazyGames
             Debug.Log($"OS: {systemInfo.os}");
             Debug.Log($"Country code: {systemInfo.countryCode}");
             Debug.Log($"Device type: {systemInfo.device.type}");
+            Debug.Log($"Application type: {systemInfo.applicationType}");
         }
 
         public void AddScore()

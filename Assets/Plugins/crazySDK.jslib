@@ -79,6 +79,15 @@ mergeInto(LibraryManager.library, {
     });
   },
 
+  PrefetchAdSDK: function (adType) {
+    var adTypeStr = window.unityStringify(adType);
+    try {
+      window.CrazyGames.SDK.ad.prefetchAd(adTypeStr)
+    } catch (e) {
+      window.UnitySDK.logError('Error while prefetching ad:', e);
+    }
+  },
+
   /** SDK.banner module */
   RequestBannersSDK: function (bannersJSON) {
     var banners = JSON.parse(window.unityStringify(bannersJSON));

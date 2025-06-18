@@ -81,10 +81,14 @@ public class Tutorial : MonoBehaviour
     {
         if (WindowManager.CurrentWindow == WindowManager.WindowsEnum.Game)
         {
-            if (CrazySDK.User.SystemInfo.device.type == _deviceTypes[(int)DeviceTypesEnum.Desktop])
-                StartCoroutine(ShowTutorialCoroutine(_PCTutorialCanvasGroup));
-            else
+            if(CrazySDK.User.SystemInfo.device.type == _deviceTypes[(int)DeviceTypesEnum.Mobile])
+            {
                 StartCoroutine(ShowTutorialCoroutine(_mobileTutorialCanvasGroup));
+            }
+            else
+            {
+                StartCoroutine(ShowTutorialCoroutine(_PCTutorialCanvasGroup));
+            }              
         }
     }
 

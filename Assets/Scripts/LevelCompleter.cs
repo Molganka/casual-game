@@ -88,11 +88,6 @@ public class LevelCompleter : MonoBehaviour
     public void CollectDoubleCoins()
     {
         DisableButtons();
-        CrazyGamesSDK.ShowRewardedAd();      
-    }
-
-    public void CollectDoubleCoinsAfterAd()
-    {
         _totalMoneyObject.SetActive(false);
         _coinCollectEffect.StartShowCoins(_doubleCoins);
     }

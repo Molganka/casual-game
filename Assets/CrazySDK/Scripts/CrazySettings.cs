@@ -41,8 +41,16 @@ namespace CrazyGames
         [Tooltip("You can disable the video ad previews in the editor if you find them annoying.")]
         public bool disableAdPreviews;
 
+        [Tooltip(
+            "Simulate ad loading failures for testing. All ad requests will return errors when enabled."
+        )]
+        public bool alwaysThrowAdError = false;
+
         [Tooltip("You can change what device type the systemInfo.device.type returns in the editor. See the docs for more info.")]
         public CrazySettingsDeviceType deviceType;
+
+        [Tooltip("You can change what application type the systemInfo.applicationType returns in the editor. See the docs for more info.")]
+        public CrazySettingsApplicationType applicationType;
     }
 
     public enum CrazySettingsAccountAvailableResponse
@@ -85,5 +93,17 @@ namespace CrazyGames
         desktop,
         tablet,
         mobile,
+    }
+
+    public enum CrazySettingsApplicationType
+    {
+        [InspectorName("Google Play Store")]
+        google_play_store,
+        
+        [InspectorName("Progressive Web App")]
+        pwa,
+        
+        [InspectorName("Web Browser")]
+        web,
     }
 }

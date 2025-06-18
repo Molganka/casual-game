@@ -68,4 +68,9 @@ namespace CrazyGames
             return input.Replace("\\", "\\\\").Replace("\"", "\\\"");
         }
     }
+
+    public class MessageStrings
+    {
+        public const string SDK_NOT_INITIALIZED = "CrazySDK initialization required. Call CrazySDK.Init() and await its completion callback before using other SDK methods.";
+    }
 }

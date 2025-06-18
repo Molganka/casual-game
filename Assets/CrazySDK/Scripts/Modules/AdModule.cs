@@ -58,7 +58,7 @@ namespace CrazyGames
         }
 
         public void RequestAd(CrazyAdType adType, Action adStarted, Action<SdkError> adError, Action adFinished)
-        {
+        {       
             if (!Application.isEditor && Application.platform != RuntimePlatform.WebGLPlayer)
             {
                 return;
@@ -68,7 +68,12 @@ namespace CrazyGames
             {
                 // don't rely on _crazySDK.WrapSDKAction to catch this when calling ads,
                 // cause the game will get frozen because the timeScale is set before calling WrapSDKAction
-                throw new Exception("CrazySDK not initialized. Please call CrazySDK.Instance.Init() before using the SDK.");
+                throw new Exception(MessageStrings.SDK_NOT_INITIALIZED);
+            }
+
+            if (Application.isEditor &&_crazySDK.Settings.alwaysThrowAdError)
+            {
+                throw new Exception("Intentionally throwing ad error due to test configuration (Always Throw Ad Error = true)");
             }
 
             if (_adRequestInProgress)
@@ -103,8 +108,46 @@ namespace CrazyGames
                 },
                 () =>
                 {
-                    SimulateAdBreak(adType);
+                    SimulateAdPlayback(adType);
                 }
+            );
+        }
+
+        public void PrefetchAd(CrazyAdType adType)
+        {
+            if (!Application.isEditor && Application.platform != RuntimePlatform.WebGLPlayer)
+            {
+                return;
+            }
+
+            if (!CrazySDK.IsInitialized)
+            {
+                // don't rely on _crazySDK.WrapSDKAction to catch this when calling ads,
+                // cause the game will get frozen because the timeScale is set before calling WrapSDKAction
+                throw new Exception(MessageStrings.SDK_NOT_INITIALIZED);
+            }
+
+            if (Application.isEditor && _crazySDK.Settings.alwaysThrowAdError)
+            {
+                throw new Exception("Intentionally throwing ad error due to test configuration (Always Throw Ad Error = true)");
+            }
+
+            if (_adRequestInProgress)
+            {
+                _crazySDK.DebugLog("Ad prefetch request in progress, ignore " + adType + " request.");
+                return;
+            }
+
+            _crazySDK.DebugLog("Prefetching CrazyAd Type: " + adType);
+
+            Application.runInBackground = true;
+
+            _crazySDK.WrapSDKAction(
+                () =>
+                {
+                    PrefetchAdSDK(adType.ToString().ToLower());
+                },
+                () => { }
             );
         }
 
@@ -114,7 +157,7 @@ namespace CrazyGames
             action();
         }
 
-        private void SimulateAdBreak(CrazyAdType adType)
+        private void SimulateAdPlayback(CrazyAdType adType)
         {
             var adTypeStr = adType.ToString();
 
@@ -180,8 +223,12 @@ namespace CrazyGames
 #if UNITY_WEBGL
         [DllImport("__Internal")]
         private static extern void RequestAdSDK(string adType);
+        
+        [DllImport("__Internal")]
+        private static extern void PrefetchAdSDK(string adType);
 #else
         private void RequestAdSDK(string adType) { }
+        private void PrefetchAdSDK(string adType) { }
 #endif
     }
 

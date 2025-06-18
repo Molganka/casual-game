@@ -13,16 +13,4 @@ public class CrazyGamesSDK : MonoBehaviour
             });
         }
     }
-
-    public static void ShowRewardedAd()
-    {
-        CrazySDK.Ad.RequestAd(CrazyAdType.Rewarded, () => // or CrazyAdType.Rewarded
-        {
-        }, (error) =>
-        {
-        }, () =>
-        {
-            LevelCompleter.Instance.CollectDoubleCoinsAfterAd();
-        });
-    }
 }
