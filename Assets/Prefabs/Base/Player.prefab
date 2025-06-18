@@ -99,7 +99,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0cc21ecd3630c6542b29b27cbd1b22d4, type: 2}
   m_sharedMaterial: {fileID: 7890001786900352957, guid: 0cc21ecd3630c6542b29b27cbd1b22d4,
@@ -415,7 +417,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.79130363
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0

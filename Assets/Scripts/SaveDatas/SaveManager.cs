@@ -4,6 +4,10 @@ using UnityEngine;
 public class SaveManager : MonoBehaviour
 {
     // LEVELS
+    private void Start()
+    {
+        PlayerPrefs.DeleteAll();
+    }
     public static void SaveLevel(LevelManager.LevelScenes level)
     {
         PlayerPrefs.SetInt("LevelIndex", (int)level);
