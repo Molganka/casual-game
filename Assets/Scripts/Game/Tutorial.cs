@@ -10,17 +10,21 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private float _fadeDuration;
     [SerializeField] private float _showTime;
 
-    private string[] _deviceTypes = new string[]
-    {
-        "desktop",
-        "tablet",
-        "mobile"
-    };
+#if !UNITY_EDITOR && UNITY_WEBGL
+
+     [System.Runtime.InteropServices.DllImport("__Internal")]
+     public static extern bool IsMobileBrowser();
+      
+     [System.Runtime.InteropServices.DllImport("__Internal")]
+     public static extern bool IsPreferredDesktopPlatform();
+#else
+    public static bool IsMobileBrowser() => false;
+    public static bool IsPreferredDesktopPlatform() => true;
+#endif
 
     private enum DeviceTypesEnum
     {
         Desktop,
-        Tablet,
         Mobile
     }
 
@@ -80,7 +84,10 @@ public class Tutorial : MonoBehaviour
     {
         if (WindowManager.CurrentWindow == WindowManager.WindowsEnum.Game)
         {
-            StartCoroutine(ShowTutorialCoroutine(_PCTutorialCanvasGroup));         
+            if(IsMobileBrowser())
+                StartCoroutine(ShowTutorialCoroutine(_mobileTutorialCanvasGroup));
+            else
+                StartCoroutine(ShowTutorialCoroutine(_PCTutorialCanvasGroup));
         }
     }
 
