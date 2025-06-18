@@ -1,4 +1,3 @@
-using CrazyGames;
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
@@ -81,14 +80,7 @@ public class Tutorial : MonoBehaviour
     {
         if (WindowManager.CurrentWindow == WindowManager.WindowsEnum.Game)
         {
-            if(CrazySDK.User.SystemInfo.device.type == _deviceTypes[(int)DeviceTypesEnum.Mobile])
-            {
-                StartCoroutine(ShowTutorialCoroutine(_mobileTutorialCanvasGroup));
-            }
-            else
-            {
-                StartCoroutine(ShowTutorialCoroutine(_PCTutorialCanvasGroup));
-            }              
+            StartCoroutine(ShowTutorialCoroutine(_PCTutorialCanvasGroup));         
         }
     }
 
